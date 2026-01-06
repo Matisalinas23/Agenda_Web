@@ -64,8 +64,8 @@ export const Agenda = () => {
   }
 
   return (
-    <div className="flex flex-col gap-24 px-80">
-        <ul className="">
+    <div className="flex flex-col items-center gap-24">
+        <ul className="w-1/2">
             {notas.length === 0
                 ? 'No hay agendas creadas'
                 : notas.map((nota, index) => (
