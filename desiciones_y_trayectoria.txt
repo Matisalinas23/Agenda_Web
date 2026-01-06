@@ -1,0 +1,28 @@
+Decisiones minimas:
+
+✔ App single-user
+
+✔ Sin backend
+
+✔ Persistencia abstracta
+
+✔ Web primero, desktop después
+
+✔ Datos con expiración (1 año)
+
+
+Al inicio...
+strict:false
+
+durante el desarrollo, app estable
+noImplicitAny:true
+strictNullChecks:true
+
+justo antes del despliegue o habiendo ya desplegado
+strict: true o flags claves activas
+
+durante fase de tauri
+strict:true
+
+la mejor regla a seguir para aumentar la estricticidad de  TS es preguntarse si quiero avanzar o asegurar
+dependiendo de que quiero aseguro con flags o strict en true o si quiero avanzar als pongo en false.

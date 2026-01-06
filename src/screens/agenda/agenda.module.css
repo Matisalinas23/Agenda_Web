@@ -1,0 +1,14 @@
+.createNote {
+    padding: 1rem 2rem;
+    background-color: #3c3c3c;
+
+    display: block;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.createNote input {
+    height: 2rem;
+    background-color: #525252;
+    padding-left: 0.5rem;
+}
