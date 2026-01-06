@@ -11,6 +11,14 @@ body {
   background-color: rgb(163, 188, 226);
 }
 
+input, textarea:focus {
+  outline: none;
+}
+
+textarea {
+  padding: 0.2rem 0.5rem;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
