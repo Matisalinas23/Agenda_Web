@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent, type InputEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import styles from './agenda.module.css'
 import SeleccionarColor from "../../components/SeleccionarColor";
 import SeleccionarColorTexto from "../../components/SeleccionarColorTexto";
@@ -17,15 +17,17 @@ interface INote extends INoteCreate {
     completed: boolean;
 }
 
-export const Agenda = () => {
-  const [formValues, setFormValues] = useState<{
+export interface IFormValues {
     asignature: string
     title: string
     limitDate: string
     description: string
     color: string
     textColor: string
-  }>({
+}
+
+export const Agenda = () => {
+  const [formValues, setFormValues] = useState<IFormValues>({
     asignature: "",
     title: "",
     limitDate: "",
@@ -60,7 +62,7 @@ export const Agenda = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
+    console.log(formValues);
   }
 
   return (
@@ -90,7 +92,7 @@ export const Agenda = () => {
                 <input name="title" value={formValues.title} onChange={handleOnChange} type="text" placeholder="Titulo" />
                 <input name="limitDate" value={formValues.limitDate} onChange={handleOnChange} type="text" placeholder="Fecha" />
                 <textarea name="description" value={formValues.description} onChange={handleOnChange} placeholder="" className="bg-neutral-600"></textarea>
-                <SeleccionarColor />
+                <SeleccionarColor setFormValues={setFormValues} />
                 <SeleccionarColorTexto />
             </div>
         </form>
