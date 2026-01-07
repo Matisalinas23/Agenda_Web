@@ -1,101 +1,44 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
-import styles from './agenda.module.css'
-import SeleccionarColor from "../../components/SeleccionarColor";
-import SeleccionarColorTexto from "../../components/SeleccionarColorTexto";
+import { useState } from "react";
+import FormularioAñadirNota from "../../components/FormularioAñadirNota";
 
-interface INoteCreate {
-    title: string;
-    description: string;
-    limitDate: string;
-    assignature: string;
-    color: string;
-    textColor: string;
-}
-
-interface INote extends INoteCreate {
-    id: number;
-    completed: boolean;
-}
-
-export interface IFormValues {
-    asignature: string
-    title: string
-    limitDate: string
-    description: string
-    color: string
-    textColor: string
+export interface INote {
+  id: number;
+  title: string;
+  description: string;
+  limitDate: string;
+  assignature: string;
+  completed: boolean;
+  color: string;
+  textColor: string;
 }
 
 export const Agenda = () => {
-  const [formValues, setFormValues] = useState<IFormValues>({
-    asignature: "",
-    title: "",
-    limitDate: "",
-    description: "",
-    color: "",
-    textColor: ""
-  })
-
-  const notas: INote[] = [
-    {
+  const [notes, setNotes] = useState<INote[]>([{
       id: 1,
       title: 'Estudiar matemáticas',
       description: 'Repasar álgebra y geometría para el examen del viernes.',
       limitDate: '2024-06-10',
       completed: false,
       assignature: 'Matemáticas',
-      color: "#2b2b2b",
+      color: "#E54444",
       textColor: "#ffffff"
-    }
-  ]
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-
-    setFormValues(prev => ({
-        ...prev,
-        [name]: value,
-    }))
-
-    console.log(value);
-  }
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formValues);
-  }
+    }])
 
   return (
     <div className="flex flex-col items-center gap-24">
-        <ul className="w-1/2">
-            {notas.length === 0
-                ? 'No hay agendas creadas'
-                : notas.map((nota, index) => (
-                    <li
-                        key={index+1}
-                        className={`bg-[${nota.color}] p-4 mb-4 rounded-lg text-white flex gap-4`}
-                    >
-                        <div>
-                            {index+1}
-                        </div>
-                        <div>
-                            {nota.title}
-                        </div>
-                    </li>
-                ))
-            }
+      {notes.length === 0
+        ? 'No hay agendas creadas'
+        : <ul>
+          {notes.map((nota, index) => (
+            <li key={index + 1} className="p-4 mb-4 rounded-lg text-white flex gap-4" style={{ backgroundColor: nota.color }}>
+              <p>{index + 1}</p>
+              <h2>{nota.title}</h2>
+            </li>
+          ))}
         </ul>
+      }
 
-        <form onSubmit={handleSubmit} className={styles.createNote}>
-            <div className="text-white grid grid-cols-3 gap-x-8 gap-y-4">
-                <input name="asignature" value={formValues.asignature} onChange={handleOnChange} type="text" placeholder="Asignatura" />
-                <input name="title" value={formValues.title} onChange={handleOnChange} type="text" placeholder="Titulo" />
-                <input name="limitDate" value={formValues.limitDate} onChange={handleOnChange} type="text" placeholder="Fecha" />
-                <textarea name="description" value={formValues.description} onChange={handleOnChange} placeholder="" className="bg-neutral-600"></textarea>
-                <SeleccionarColor setFormValues={setFormValues} />
-                <SeleccionarColorTexto />
-            </div>
-        </form>
+      <FormularioAñadirNota setNotes={setNotes} />
     </div>
   )
 }

@@ -8,8 +8,8 @@
     gap: 0.5rem;
 }
 
-.createNote input {
+    input {
     height: 2rem;
-    background-color: #525252;
+    background-color: #737373;
     padding-left: 0.5rem;
 }
