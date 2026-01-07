@@ -24,7 +24,7 @@ textarea {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #727272;
+  background: #545454;
   border-radius: 6px;
 }
 ::-webkit-scrollbar-track {
