@@ -1,6 +1,6 @@
 import { useRef, useState, type Dispatch, type SetStateAction } from "react"
-import type { IFormValues } from "../screens/agenda/agenda"
 import useClickFuera from "../hooks/useClickFuera";
+import type { IFormValues } from "./FormularioAñadirNota";
 
 const colors: { code: string, color: string }[] = [
     { code: "#E54444", color: "Rojo" },
@@ -20,18 +20,20 @@ const colors: { code: string, color: string }[] = [
 
 export default function SeleccionarColor({ setFormValues }: { setFormValues: Dispatch<SetStateAction<IFormValues>> }) {
     const [openList, setOpenList] = useState<boolean>(false)
+    const [selectedColor, setSelectedColor] = useState<{ code: string, color: string }>(null)
     const componentRef = useRef<HTMLDivElement>(null);
 
     const handleOpenList = () => {
         setOpenList(!openList)
     }
 
-    const handleSelectColor = (color: string) => {
+    const handleSelectColor = (col: { code: string, color: string }) => {
         setFormValues(prev => ({
             ...prev,
-            color: color
+            color: col.code
         }))
 
+        setSelectedColor({ code: col.code, color: col.color })
         setOpenList(false)
     }
 
@@ -39,22 +41,33 @@ export default function SeleccionarColor({ setFormValues }: { setFormValues: Dis
 
     return (
         <div className="relative" ref={componentRef}>
-            <div onClick={handleOpenList} className="bg-neutral-600 cursor-pointer py-2 pl-2">
-                Seleccionar color
-            </div>
+            <p
+                onClick={handleOpenList} className="bg-neutral-500 cursor-pointer py-2 pl-2"
+                style={openList ? {borderRadius: "12px 12px 0px 0px"} : {borderRadius: "12px"}}
+            >
+                {selectedColor === null
+                    ? "Seleccionar color"
+                    : <div className="flex items-center gap-2">
+                        <div style={{ backgroundColor: selectedColor.code }} className="h-4 w-4 rounded-full"></div>
+                        {selectedColor.color}
+                    </div>
+                }
+            </p>
 
             {openList &&
-                <ul id="color" className="absolute w-full h-60 overflow-y-auto border-t border-neutral-400 p-2 bg-neutral-600 flex flex-col gap-2">
-                    {colors.map((col, index) => (
-                        <li
-                            className="cursor-pointer hover:bg-neutral-500 rounded-xl px-3 py-1 flex items-center gap-2"
-                            key={index} value={`option${index+1}`} onClick={() => handleSelectColor(col.color)}
-                        >
-                            <div className={`h-4 w-4 rounded-full`} style={{ backgroundColor: col.code }}></div>
-                            {col.color}
-                        </li>
-                    ))}
-                </ul>
+                <div className="absolute w-full h-60 p-2 rounded-b-xl bg-neutral-500">
+                    <ul id="color" className="w-full h-full overflow-y-auto border-neutral-400 pr-2 flex flex-col gap-2">
+                        {colors.map((col, index) => (
+                            <li
+                                className="cursor-pointer duration-300 hover:bg-neutral-400 rounded-xl px-3 py-1 flex items-center gap-2"
+                                key={index} value={`option${index+1}`} onClick={() => handleSelectColor(col)}
+                            >
+                                <div className="h-4 w-4 rounded-full" style={{ backgroundColor: col.code }}></div>
+                                {col.color}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             }
         </div>
     )
