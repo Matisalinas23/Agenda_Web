@@ -20,7 +20,7 @@ export interface IFormValues {
   color: string
 }
 
-export default function FormularioAñadirNota({ setNotes }: { setNotes: Dispatch<SetStateAction<INote[]>> }) {
+export default function FormularioAñadirNota({ notes, setNotes }: { notes: INote[], setNotes: Dispatch<SetStateAction<INote[]>> }) {
     const [formValues, setFormValues] = useState<IFormValues>({
         asignature: "",
         title: "",
@@ -41,20 +41,22 @@ export default function FormularioAñadirNota({ setNotes }: { setNotes: Dispatch
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         const darkColors = ["#E54444","#F38A48","#56EB83", "#5F62F2", "#AF78EA", "#E171E6", "#535353"];
         e.preventDefault();
-    
-        setNotes(prev => [
-          ...prev,
-          {
-            id: prev.length + 1,
-            title: formValues.title,
-            description: formValues.description,
-            limitDate: formValues.limitDate,
-            completed: false,
-            assignature: formValues.asignature,
-            color: formValues.color,
-            textColor: darkColors.includes(formValues.color) ? "#222222" : "#ffffff",
-          }
-        ])
+
+        setNotes(prev =>
+            [
+                ...prev,
+                {
+                    id: notes.length + 1,
+                    title: formValues.title,
+                    description: formValues.description,
+                    limitDate: formValues.limitDate,
+                    completed: false,
+                    assignature: formValues.asignature,
+                    color: formValues.color,
+                    textColor: darkColors.includes(formValues.color) ? "#ffffff" : "#222222",
+                }
+            ]
+        )
     }
 
     return (

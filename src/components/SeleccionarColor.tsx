@@ -41,18 +41,18 @@ export default function SeleccionarColor({ setFormValues }: { setFormValues: Dis
 
     return (
         <div className="relative" ref={componentRef}>
-            <p
+            <div
                 onClick={handleOpenList} className="bg-neutral-500 cursor-pointer py-2 pl-2"
                 style={openList ? {borderRadius: "12px 12px 0px 0px"} : {borderRadius: "12px"}}
             >
                 {selectedColor === null
-                    ? "Seleccionar color"
+                    ? <p>Seleccionar color</p>
                     : <div className="flex items-center gap-2">
                         <div style={{ backgroundColor: selectedColor.code }} className="h-4 w-4 rounded-full"></div>
                         {selectedColor.color}
                     </div>
                 }
-            </p>
+            </div>
 
             {openList &&
                 <div className="absolute w-full h-60 p-2 rounded-b-xl bg-neutral-500">
