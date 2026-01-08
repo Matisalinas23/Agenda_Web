@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FormularioAñadirNota from "../../components/FormularioAñadirNota";
+import Nota from "../../components/Nota";
 
 export interface INote {
   id: number;
@@ -26,13 +27,8 @@ export const Agenda = () => {
     <div className="flex flex-col items-center gap-24">
       {notes.length === 0
         ? 'No hay agendas creadas'
-        : <ul>
-          {notes.map((nota, index) => (
-            <li key={index + 1} className="p-4 mb-4 rounded-lg text-white flex gap-4" style={{ backgroundColor: nota.color, color: nota.textColor }}>
-              <p>{index + 1}</p>
-              <h2>{nota.title}</h2>
-            </li>
-          ))}
+        : <ul className="w-1/2">
+            { notes.map((nota, index) => (<Nota key={index + 1} nota={nota} />)) }
         </ul>
       }
 

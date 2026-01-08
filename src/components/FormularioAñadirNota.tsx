@@ -1,16 +1,6 @@
 import { useState, type ChangeEvent, type Dispatch, type FormEvent, type SetStateAction } from 'react';
 import SeleccionarColor from './SeleccionarColor'
-
-export interface INote {
-  id: number;
-  title: string;
-  description: string;
-  limitDate: string;
-  assignature: string;
-  completed: boolean;
-  color: string;
-  textColor: string;
-}
+import type { INote } from '../screens/agenda/agenda';
 
 export interface IFormValues {
   asignature: string
