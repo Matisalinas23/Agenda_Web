@@ -1,5 +1,6 @@
 import type { INote } from "../../screens/agenda/agenda";
 import useNoteStore from "../../store/useNoteStore";
+import { ButtonCancelSmall } from "../ButtonCancel";
 
 export default function DeleteNote({ note, closeModal }: { note: INote, closeModal: () => void }) {
     const { deleteNote } = useNoteStore(state => state) 
@@ -22,8 +23,13 @@ export default function DeleteNote({ note, closeModal }: { note: INote, closeMod
                 </p>
 
                 <div className="w-full flex justify-between">
-                    <button className="w-28 py-1 rounded-lg text-sm bg-neutral-800 text-white cursor-pointer" onClick={closeModal}>CANCELAR</button>
-                    <button className="w-28 py-1 rounded-lg text-sm bg-red-700 cursor-pointer" onClick={handleDeleteNote}>ELIMINAR</button>
+                    <ButtonCancelSmall onClick={closeModal} />
+                    <button
+                        className="w-24 py-1 bg-red-700 font-medium cursor-pointer rounded-xl duration-200 hover:bg-red-500"
+                        onClick={handleDeleteNote}
+                    >
+                        ELIMINAR
+                    </button>
                 </div>
             </div>
         </div>

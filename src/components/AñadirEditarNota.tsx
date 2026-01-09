@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from 'react';
 import SeleccionarColor from './SeleccionarColor'
 import type { IFormValues } from '../screens/agenda/agenda';
+import { ButtonCancelMedium } from './ButtonCancel';
 
 interface IAñadirEditarNota {
     initialValues: IFormValues
@@ -21,7 +22,7 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
     }
 
     return (
-        <form className="w-1/2 py-4 px-8 text-white bg-neutral-600"
+        <form className="w-1/2 py-4 px-8 text-white bg-neutral-700"
             onSubmit={(e) => {
                 e.preventDefault();
                 onSubmit(formValues)
@@ -49,8 +50,8 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
             </div>
             
             <div className='w-full flex justify-between'>
-                <button onClick={closeModal} className="cursor-pointer py-2 w-48 bg-red-700 text-white font-semibold rounded-xl duration-200 hover:bg-red-500">CANCELAR</button>
-                <button className="cursor-pointer h-fit py-2 w-48 rounded-xl text-md text-blue-900 font-bold bg-blue-300">ACEPTAR</button>
+                <ButtonCancelMedium onClick={closeModal}/>
+                <button type='submit' className="cursor-pointer h-fit py-2 w-48 rounded-xl text-md text-blue-900 font-bold bg-blue-300">ACEPTAR</button>
             </div>
         </form>
     )
