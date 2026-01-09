@@ -6,6 +6,7 @@ interface INoteStore {
     notes: INote[]
     setNotes: (notes: INote[]) => void
     addNote: (note: INote) => void
+    editNote: (updatedNote: INote) => void
 }
 
 const useNoteStore = create<INoteStore>()(
@@ -13,7 +14,10 @@ const useNoteStore = create<INoteStore>()(
         (set) => ({
             notes: [],
             setNotes: (notes: INote[]) => set({ notes }),
-            addNote: (note) => set((state) => ({ notes: [...state.notes, note] }))
+            addNote: (note) => set((state) => ({ notes: [...state.notes, note] })),
+            editNote: (updatedNote) => set((state) => ({
+                notes: state.notes.map((note) => note.id === updatedNote.id ? updatedNote : note)
+            })),
         }),
         {
             name: "notes"
