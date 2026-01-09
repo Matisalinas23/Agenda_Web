@@ -2,17 +2,7 @@ import { useEffect } from "react";
 import Nota from "../../components/Nota";
 import useNoteStore from "../../store/useNoteStore";
 import AñadirEditarNota from "../../components/AñadirEditarNota";
-
-export interface INote {
-  id: number;
-  title: string;
-  description: string;
-  limitDate: string;
-  assignature: string;
-  completed: boolean;
-  color: string;
-  textColor: string;
-}
+import useAgendaModals from "../../hooks/useAgendaModals";
 
 export interface IFormValues {
   title: string,
@@ -22,8 +12,15 @@ export interface IFormValues {
   color: string
 }
 
+export interface INote extends IFormValues {
+  id: number;
+  completed: boolean;
+  textColor: string;
+}
+
 export const Agenda = () => {
-  const { notes, addNote, setNotes } = useNoteStore(state => state);
+  const { notes, addNote } = useNoteStore(state => state);
+  const { modal, openCreate, closeModal } = useAgendaModals()
   const initialValues: IFormValues = {
     title: "",
     description: "",
@@ -47,6 +44,7 @@ export const Agenda = () => {
     }
 
     addNote(newNote)
+    closeModal()
   }
 
   useEffect(() => {
@@ -62,7 +60,16 @@ export const Agenda = () => {
         </ul>
       }
 
-      <AñadirEditarNota initialValues={initialValues} onSubmit={handleCreate} />
+      {modal === null &&
+        <button
+          className="cursor-pointer w-48 h-12 text-xl bg-blue-900 text-white rounded-xl text-center"
+          onClick={openCreate}
+        >
+          AÑADIR NOTA
+        </button>
+      }
+
+      {modal === "create" && <AñadirEditarNota initialValues={initialValues} onSubmit={handleCreate} closeModal={closeModal} />}
     </div>
   )
 }
