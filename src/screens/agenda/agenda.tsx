@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import Nota from "../../components/Nota";
 import useNoteStore from "../../store/useNoteStore";
 import AñadirEditarNota from "../../components/AñadirEditarNota";
 import useAgendaModals from "../../hooks/useAgendaModals";
+import { useEffect } from "react";
 
 export interface IFormValues {
   title: string,
@@ -20,6 +20,7 @@ export interface INote extends IFormValues {
 
 export const Agenda = () => {
   const { notes, addNote } = useNoteStore(state => state);
+  console.log("render agenda → notes:", notes)
   const { modal, openCreate, closeModal } = useAgendaModals()
   const initialValues: IFormValues = {
     title: "",
@@ -46,10 +47,6 @@ export const Agenda = () => {
     addNote(newNote)
     closeModal()
   }
-
-  useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
 
   return (
     <div className="flex flex-col items-center gap-24">
