@@ -1,6 +1,6 @@
 import { useRef, useState, type Dispatch, type SetStateAction } from "react"
 import useClickFuera from "../hooks/useClickFuera";
-import type { IFormValues } from "./FormularioAñadirNota";
+import type { IFormValues } from "./AñadirEditarNota";
 
 const colors: { code: string, color: string }[] = [
     { code: "#E54444", color: "Rojo" },
