@@ -7,6 +7,7 @@ interface INoteStore {
     setNotes: (notes: INote[]) => void
     addNote: (note: INote) => void
     editNote: (updatedNote: INote) => void
+    deleteNote: (id: number) => void
 }
 
 const useNoteStore = create<INoteStore>()(
@@ -18,6 +19,9 @@ const useNoteStore = create<INoteStore>()(
             editNote: (updatedNote) => set((state) => ({
                 notes: state.notes.map((note) => note.id === updatedNote.id ? updatedNote : note)
             })),
+            deleteNote: (id) => set((state) => ({
+                notes: state.notes.filter((note) => note.id !== id )
+            }))
         }),
         {
             name: "notes"

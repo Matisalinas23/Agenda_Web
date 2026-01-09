@@ -1,9 +1,10 @@
 import type { INote } from "../screens/agenda/agenda";
 import EditNote from "./modals/EditNote";
 import useAgendaModals from "../hooks/useAgendaModals";
+import DeleteNote from "./modals/DeleteNote";
 
 export default function Nota({ note }: { note: INote }) {
-    const { modal, openEdit, closeModal } = useAgendaModals()
+    const { modal, openEdit, openDelete, closeModal } = useAgendaModals()
 
     return (
         <>
@@ -13,13 +14,12 @@ export default function Nota({ note }: { note: INote }) {
             <p>{note.limitDate}</p>
             <div className="w-2/10">
                 <button className="w-1/2 h-full bg-white/33 cursor-pointer hover:bg-white/66" onClick={openEdit}>E</button>
-                <button className="w-1/2 h-full bg-white/33 cursor-pointer hover:bg-red-500">X</button>
+                <button className="w-1/2 h-full bg-white/33 cursor-pointer hover:bg-red-500" onClick={openDelete}>X</button>
             </div>
         </li>
         
-        {modal === "edit" &&
-            <EditNote note={note} closeModal={closeModal} />
-        }
+        { modal === "edit" && <EditNote note={note} closeModal={closeModal} /> }
+        { modal === "delete" && <DeleteNote note={note} closeModal={closeModal} />}
         </>
     )
 }
