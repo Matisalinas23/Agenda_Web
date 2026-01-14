@@ -9,7 +9,7 @@ export default function Nota({ note }: { note: INote }) {
     return (
         <>
         <li className="w-full p-4 mb-4 rounded-2xl text-white flex justify-between" style={{ backgroundColor: note.color, color: note.textColor }}>
-            <h2>{note.title}</h2>
+            <h2>{note.assignature}</h2>
             <p>{note.title}</p>
             <p>{note.limitDate}</p>
             <div className="w-2/10">
