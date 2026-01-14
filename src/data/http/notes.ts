@@ -21,3 +21,11 @@ export const createNoteHttp = async (formValues: IFormValues): Promise<INote> =>
     }
 }
 
+export const updateNoteHttp = async (id: number, updatedNote: IFormValues): Promise<INote> => {
+    try {
+        const res = await api.put(`${notesUrl}/${id}`, updatedNote)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
