@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from 'react';
+import { useEffect, useState, type ChangeEvent } from 'react';
 import SeleccionarColor from './SeleccionarColor'
 import type { IFormValues } from '../screens/agenda/agenda';
 import { ButtonCancelMedium } from './ButtonCancel';
@@ -11,6 +11,7 @@ interface IAñadirEditarNota {
 
 export default function AñadirEditarNota({ initialValues, onSubmit, closeModal }: IAñadirEditarNota) {
     const [formValues, setFormValues] = useState<IFormValues>(initialValues)
+    const [año, setAño] = useState<number>(2026)
     
     const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
@@ -20,6 +21,11 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
             [name]: value,
         }))
     }
+
+    useEffect(() => {
+        const año: number = new Date().getFullYear()
+        setAño(año)
+    }, [])
 
     return (
         <form className="w-1/2 py-4 px-8 text-white bg-neutral-700"
@@ -39,7 +45,8 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
                 />
                 <input
                     name="limitDate" value={formValues.limitDate} onChange={handleOnChange}
-                    type="text" placeholder="Fecha" className="bg-neutral-500 py-1 pl-2"
+                    type="date" placeholder="Fecha" className="bg-neutral-500 py-1 pl-2"
+                    min={`${año}-01-01`} max={`${año}-12-31`}
                 />
                 <textarea
                     name="description" value={formValues.description} onChange={handleOnChange}
