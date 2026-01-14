@@ -1,7 +1,7 @@
-import Nota from "../../components/Nota";
-import useNoteStore from "../../store/useNoteStore";
 import AñadirEditarNota from "../../components/AñadirEditarNota";
+import NotesList from "../../components/NotesList";
 import useAgendaModals from "../../hooks/useAgendaModals";
+import useNoteStore from "../../store/useNoteStore";
 
 export interface IFormValues {
   title: string,
@@ -18,9 +18,9 @@ export interface INote extends IFormValues {
 }
 
 export const Agenda = () => {
-  const { notes, addNote } = useNoteStore(state => state);
-  console.log("render agenda → notes:", notes)
+  const { notes, addNote } = useNoteStore()
   const { modal, openCreate, closeModal } = useAgendaModals()
+
   const initialValues: IFormValues = {
     title: "",
     description: "",
@@ -49,13 +49,8 @@ export const Agenda = () => {
 
   return (
     <div className="flex flex-col items-center gap-24">
-      {notes.length === 0
-        ? 'No hay agendas creadas'
-        : <ul className="w-1/2">
-            { notes.map((note, index) => (<Nota key={index + 1} note={note}/>)) }
-        </ul>
-      }
-
+      <NotesList notes={notes} />
+      
       {modal === null &&
         <button
           className="cursor-pointer w-48 h-12 text-xl bg-blue-900 text-white rounded-xl text-center"
