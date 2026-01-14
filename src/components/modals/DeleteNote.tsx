@@ -1,9 +1,11 @@
+import useDate from "../../hooks/useDate";
 import type { INote } from "../../screens/agenda/agenda";
 import useNoteStore from "../../store/useNoteStore";
 import { ButtonCancelSmall } from "../ButtonCancel";
 
 export default function DeleteNote({ note, closeModal }: { note: INote, closeModal: () => void }) {
-    const { deleteNote } = useNoteStore(state => state) 
+    const { deleteNote } = useNoteStore(state => state)
+    const { formatDate } = useDate()
 
     const handleDeleteNote = () => {
         deleteNote(note.id)
@@ -18,7 +20,7 @@ export default function DeleteNote({ note, closeModal }: { note: INote, closeMod
                     <div className="text-lg font-medium mt-2 flex gap-3 justify-center">
                         <h3>{note.assignature}</h3>
                         <h3>{note.title}</h3>
-                        <h3>{note.limitDate}</h3>
+                        <h3>{formatDate(note.limitDate)}</h3>
                     </div>
                 </p>
 
