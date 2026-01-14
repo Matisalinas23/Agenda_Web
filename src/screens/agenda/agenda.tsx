@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import AñadirEditarNota from "../../components/AñadirEditarNota";
 import NotesList from "../../components/NotesList";
 import useAgendaModals from "../../hooks/useAgendaModals";
 import useNoteStore from "../../store/useNoteStore";
+import { useNotes } from "../../hooks/useNotes";
 
 export interface IFormValues {
   title: string,
@@ -18,8 +20,9 @@ export interface INote extends IFormValues {
 }
 
 export const Agenda = () => {
-  const { notes, addNote } = useNoteStore()
+  const { notes } = useNoteStore(state => state)
   const { modal, openCreate, closeModal } = useAgendaModals()
+  const { getAllNotes, createNote } = useNotes()
 
   const initialValues: IFormValues = {
     title: "",
@@ -29,28 +32,24 @@ export const Agenda = () => {
     color: ""
   }
 
-  const handleCreate = (formValues: IFormValues) => {
-    const darkColors = ["#E54444", "#F38A48", "#56EB83", "#5F62F2", "#AF78EA", "#E171E6", "#535353"];
-
-    const newNote = {
-      id: notes.length + 1,
-      title: formValues.title,
-      description: formValues.description,
-      limitDate: formValues.limitDate,
-      completed: false,
-      assignature: formValues.assignature,
-      color: formValues.color,
-      textColor: darkColors.includes(formValues.color) ? "#ffffff" : "#222222",
-    }
-
-    addNote(newNote)
+  const handleCreate = async (formValues: IFormValues) => {
+    const isCreated = await createNote(formValues)
     closeModal()
+
+    if (!isCreated) return
   }
+
+  useEffect(() => {
+    const isFetched = getAllNotes()
+    if (!isFetched) {
+      console.log("Error fetching notes")
+    }
+  }, [])
 
   return (
     <div className="flex flex-col items-center gap-24">
       <NotesList notes={notes} />
-      
+
       {modal === null &&
         <button
           className="cursor-pointer w-48 h-12 text-xl bg-blue-900 text-white rounded-xl text-center"
