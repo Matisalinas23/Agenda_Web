@@ -2,7 +2,6 @@ import Nota from "../../components/Nota";
 import useNoteStore from "../../store/useNoteStore";
 import AñadirEditarNota from "../../components/AñadirEditarNota";
 import useAgendaModals from "../../hooks/useAgendaModals";
-import { useEffect } from "react";
 
 export interface IFormValues {
   title: string,

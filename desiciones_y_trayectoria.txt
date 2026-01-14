@@ -2,8 +2,6 @@ Decisiones minimas:
 
 ✔ App single-user
 
-✔ Sin backend
-
 ✔ Persistencia abstracta
 
 ✔ Web primero, desktop después
