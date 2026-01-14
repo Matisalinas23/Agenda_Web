@@ -24,7 +24,19 @@ export const createNoteHttp = async (formValues: IFormValues): Promise<INote> =>
 export const updateNoteHttp = async (id: number, updatedNote: IFormValues): Promise<INote> => {
     try {
         const res = await api.put(`${notesUrl}/${id}`, updatedNote)
+
+        console.log(res.data)
+        
         return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteNoteHttp = async (id: number): Promise<INote> => {
+    try {
+        const res = await api.delete(`/${id}`)
+        return res.data.note
     } catch (error) {
         console.log(error)
     }

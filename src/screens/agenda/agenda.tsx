@@ -9,13 +9,13 @@ export interface IFormValues {
   title: string,
   description: string,
   assignature: string,
-  limitDate: string,
+  limitDate: Date | string,
   color: string
 }
 
 export interface INote extends IFormValues {
   id: number;
-  completed: boolean;
+  createdAt: string
   textColor: string;
 }
 
@@ -34,9 +34,10 @@ export const Agenda = () => {
 
   const handleCreate = async (formValues: IFormValues) => {
     const isCreated = await createNote(formValues)
-    closeModal()
 
     if (!isCreated) return
+
+    closeModal()
   }
 
   useEffect(() => {

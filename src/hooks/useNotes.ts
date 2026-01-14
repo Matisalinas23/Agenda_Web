@@ -1,11 +1,11 @@
 import type { IFormValues, INote } from "../screens/agenda/agenda"
 import useNoteStore from "../store/useNoteStore"
-import { createNoteHttp, getAllNotesHttp, updateNoteHttp } from "../data/http/notes"
+import { createNoteHttp, deleteNoteHttp, getAllNotesHttp, updateNoteHttp } from "../data/http/notes"
 
 
 
 export const useNotes = () => {
-    const { setNotes, addNote, editNote } = useNoteStore(state => state)
+    const { setNotes, addNote, editNote, deleteNote } = useNoteStore(state => state)
 
     const getAllNotes = async (): Promise<boolean> => {
         const notes: INote[] = await getAllNotesHttp()
@@ -27,7 +27,7 @@ export const useNotes = () => {
         return true
     }
 
-    const updatedNote = async (id: number, formValues: IFormValues): Promise<boolean> => {
+    const updateNote = async (id: number, formValues: IFormValues): Promise<boolean> => {
         const updatedNote = await updateNoteHttp(id, formValues)
 
         if (!updatedNote) return false
@@ -37,9 +37,20 @@ export const useNotes = () => {
         return true
     }
 
+    const removeNote = async (id: number): Promise<boolean> => {
+        const deletedNote = await deleteNoteHttp(id)
+
+        if (!deletedNote) return false
+
+        deleteNote(id)
+
+        return true
+    }
+
     return {
         getAllNotes,
         createNote,
-        updatedNote,
+        updateNote,
+        removeNote,
     }
 }
