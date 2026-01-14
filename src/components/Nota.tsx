@@ -2,13 +2,11 @@ import type { INote } from "../screens/agenda/agenda";
 import EditNote from "./modals/EditNote";
 import useAgendaModals from "../hooks/useAgendaModals";
 import DeleteNote from "./modals/DeleteNote";
+import useDate from "../hooks/useDate";
 
 export default function Nota({ note }: { note: INote }) {
     const { modal, openEdit, openDelete, closeModal } = useAgendaModals()
-
-    const formatDate = (date: string | Date) => {
-        return new Date(date).toLocaleDateString("es-AR")
-    }
+    const { formatDate } = useDate()
 
     return (
         <>
