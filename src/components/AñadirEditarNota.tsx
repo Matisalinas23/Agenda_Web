@@ -11,8 +11,10 @@ interface IAñadirEditarNota {
 }
 
 export default function AñadirEditarNota({ initialValues, onSubmit, closeModal }: IAñadirEditarNota) {
-    const [formValues, setFormValues] = useState<IFormValues>(initialValues)
     const { año, toInputDate } = useDate()
+    initialValues.limitDate = toInputDate(initialValues.limitDate)
+    
+    const [formValues, setFormValues] = useState<IFormValues>(initialValues)
     
     const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
@@ -40,7 +42,7 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
                     type="text" placeholder="Titulo" className="bg-neutral-500 py-1 pl-2"
                 />
                 <input
-                    name="limitDate" value={toInputDate(formValues.limitDate)} onChange={handleOnChange}
+                    name="limitDate" value={formValues.limitDate || ""} onChange={handleOnChange}
                     type="date" placeholder="Fecha" className="bg-neutral-500 py-1 pl-2"
                     min={`${año}-01-01`} max={`${año}-12-31`}
                 />

@@ -9,7 +9,7 @@ export interface IFormValues {
   title: string,
   description: string,
   assignature: string,
-  limitDate: Date | string,
+  limitDate: string,
   color: string
 }
 

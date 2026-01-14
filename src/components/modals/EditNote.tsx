@@ -11,7 +11,7 @@ export default function EditNote({ note, closeModal }: { note: INote, closeModal
             assignature: formValues.assignature,
             color: formValues.color,
             description: formValues.description,
-            limitDate: new Date(formValues.limitDate)
+            limitDate: formValues.limitDate
         }
 
         console.log(updatedNote)
