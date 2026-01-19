@@ -13,9 +13,7 @@ export default function EditNote({ note, closeModal }: { note: INote, closeModal
             description: formValues.description,
             limitDate: formValues.limitDate
         }
-
-        console.log(updatedNote)
-
+        
         const isUpdated = await updateNote(note.id, updatedNote)
 
         if (!isUpdated) return
