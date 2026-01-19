@@ -33,7 +33,7 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
                     type="text" placeholder="Titulo" className="bg-neutral-500 py-1 pl-2"
                 />
                 <input
-                    name="limitDate" value={formValues.limitDate || ""} onChange={handleChange}
+                    name="limitDate" value={formValues.limitDate} onChange={handleChange}
                     type="date" placeholder="Fecha" className="bg-neutral-500 py-1 pl-2"
                     min={`${año}-01-01`} max={`${año}-12-31`}
                 />

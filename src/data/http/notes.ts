@@ -13,8 +13,17 @@ export const getAllNotesHttp = async (): Promise<INote[]> => {
 }
 
 export const createNoteHttp = async (formValues: IFormValues): Promise<INote> => {
+    const { assignature, title, description, color, limitDate } = formValues
+    const [year, month, day] = limitDate.split("-").map(Number)
+
     try {
-        const res = await api.post(notesUrl, formValues)
+        const res = await api.post(notesUrl, {
+            title,
+            assignature,
+            description,
+            color,
+            limitDate: new Date(year, month - 1, day)
+        })
         return res.data
     } catch (error) {
         console.log(error)
@@ -23,10 +32,7 @@ export const createNoteHttp = async (formValues: IFormValues): Promise<INote> =>
 
 export const updateNoteHttp = async (id: number, updatedNote: IFormValues): Promise<INote> => {
     try {
-        const res = await api.put(`${notesUrl}/${id}`, updatedNote)
-
-        console.log(res.data)
-        
+        const res = await api.put(`${notesUrl}/${id}`, updatedNote)        
         return res.data
     } catch (error) {
         console.log(error)
