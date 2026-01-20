@@ -1,15 +1,10 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import Login from "./modals/Login";
+import useAuthStore from "../store/useAuthStore";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Navbar() {
-    const [isLoginModal, setIsLoginModal] = useState<boolean>(false) // Modal login state
-    const [isToken, setIsToken] = useState<boolean>(() => !!localStorage.getItem("token"))
-
-    const handleLogout = () => {
-        localStorage.removeItem("token")
-        setIsToken(false)
-    }
+    const { isToken } = useAuthStore(state => state)
+    const { logoutUser } = useAuth()
 
     return (
         <nav className="text-white bg-neutral-500 flex">
@@ -20,13 +15,9 @@ export default function Navbar() {
             </ul>
 
             <div className="w-80 bg-[#656565] flex items-center justify-center" >{isToken
-                ? <button className="bg-neutral-800 rounded-xl py-1 px-4 cursor-pointer" onClick={handleLogout}>Log Out</button>
-                : <button className="bg-neutral-800 py-1 px-4 rounded-xl cursor-pointer" onClick={() => setIsLoginModal(true)}>Iniciar Sesión</button>
+                ? <button className="bg-neutral-800 rounded-xl py-1 px-4 cursor-pointer" onClick={logoutUser}>Log Out</button>
+                : <Link to={"/login"} className="bg-neutral-800 py-1 px-4 rounded-xl cursor-pointer">Iniciar Sesión</Link>
             }</div>
-
-            {isLoginModal && <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
-                <Login closeModal={() => {setIsLoginModal(false)}} setIsToken={setIsToken}/>
-            </div>}
         </nav>
     )
 }
