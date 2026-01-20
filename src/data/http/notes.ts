@@ -31,8 +31,17 @@ export const createNoteHttp = async (formValues: IFormValues): Promise<INote> =>
 }
 
 export const updateNoteHttp = async (id: number, updatedNote: IFormValues): Promise<INote> => {
+    const { assignature, title, description, color, limitDate } = updatedNote
+    const [year, month, day] = limitDate.split("-").map(Number)
+
     try {
-        const res = await api.put(`${notesUrl}/${id}`, updatedNote)        
+        const res = await api.put(`${notesUrl}/${id}`, {
+            assignature,
+            title,
+            description,
+            color,
+            limitDate: new Date(year, month - 1, day)
+        })
         return res.data
     } catch (error) {
         console.log(error)
@@ -41,7 +50,7 @@ export const updateNoteHttp = async (id: number, updatedNote: IFormValues): Prom
 
 export const deleteNoteHttp = async (id: number): Promise<INote> => {
     try {
-        const res = await api.delete(`/${id}`)
+        const res = await api.delete(`${notesUrl}/${id}`)
         return res.data.note
     } catch (error) {
         console.log(error)
