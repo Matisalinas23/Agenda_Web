@@ -3,6 +3,7 @@ import type { IFormValues } from '../screens/agenda/agenda';
 import { ButtonCancelMedium } from './ButtonCancel';
 import useDate from '../hooks/useDate';
 import useForm from '../hooks/useForm';
+import { ButtonAcceptMedium } from './ButtonAccept';
 
 interface IAñadirEditarNota {
     initialValues: IFormValues
@@ -47,7 +48,7 @@ export default function AñadirEditarNota({ initialValues, onSubmit, closeModal 
             
             <div className='w-full flex justify-between'>
                 <ButtonCancelMedium onClick={closeModal}/>
-                <button type='submit' className="cursor-pointer h-fit py-2 w-48 rounded-xl text-md text-blue-900 font-bold bg-blue-300">ACEPTAR</button>
+                <ButtonAcceptMedium type='submit' />
             </div>
         </form>
     )

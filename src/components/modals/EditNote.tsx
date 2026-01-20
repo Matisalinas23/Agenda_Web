@@ -6,15 +6,7 @@ export default function EditNote({ note, closeModal }: { note: INote, closeModal
     const { updateNote } = useNotes()
 
     const handleEditNote = async (formValues: IFormValues) => {
-        const updatedNote: IFormValues = {
-            title: formValues.title,
-            assignature: formValues.assignature,
-            color: formValues.color,
-            description: formValues.description,
-            limitDate: formValues.limitDate
-        }
-        
-        const isUpdated = await updateNote(note.id, updatedNote)
+        const isUpdated = await updateNote(note.id, formValues)
 
         if (!isUpdated) return
 
