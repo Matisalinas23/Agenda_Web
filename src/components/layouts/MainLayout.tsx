@@ -3,14 +3,14 @@ import Navbar from '../Navbar'
 
 export default function MainLayout() {
   return (
-    <>
+    <div className='min-h-screen flex flex-col'>
         <header>
             <Navbar />
         </header>
 
-        <main>
+        <main className='flex-1'>
             <Outlet />
         </main>
-    </>
+    </div>
   )
 }

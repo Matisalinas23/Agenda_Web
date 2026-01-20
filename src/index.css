@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-html, body {
+html {
   margin: 0;
   padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
 }
 
 body {
