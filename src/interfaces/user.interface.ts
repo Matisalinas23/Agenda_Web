@@ -5,9 +5,12 @@ export interface ILoginUser {
     password: string
 }
 
-export interface IUser extends ILoginUser {
-    id: number
+export interface IRegisterUser extends ILoginUser {
     username: string
+}
+
+export interface IUser extends IRegisterUser {
+    id: number
     createdAt: Date
     notes: INote[]
 }

@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Agenda } from './screens/agenda/agenda'
 import Login from './screens/login'
 import MainLayout from './components/layouts/MainLayout'
+import Register from './screens/register'
 
 export default function AppRouter() {
   return (
@@ -11,6 +12,7 @@ export default function AppRouter() {
         </Route>
 
         <Route path='/login' element={<Login />}/>
+        <Route path='/register' element={<Register />}/>
     </Routes>
   )
 }
