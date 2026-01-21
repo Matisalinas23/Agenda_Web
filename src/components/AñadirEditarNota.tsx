@@ -1,9 +1,9 @@
 import SeleccionarColor from './SeleccionarColor'
 import type { IFormValues } from '../screens/agenda/agenda';
-import { ButtonCancelMedium } from './ButtonCancel';
+import { ButtonCancelMedium } from './Buttons/ButtonCancel';
 import useDate from '../hooks/useDate';
 import useForm from '../hooks/useForm';
-import { ButtonAcceptMedium } from './ButtonAccept';
+import { ButtonAcceptMedium } from './Buttons/ButtonAccept';
 
 interface IAñadirEditarNota {
     initialValues: IFormValues
