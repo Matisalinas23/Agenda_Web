@@ -15,7 +15,7 @@ export default function Register() {
   const { registerUser } = useAuth()
   const navigate = useNavigate()
 
-  const inpuStyle = "text-blue-800/80 font-normal border-b border-blue-900/50 text-lg px-1 py-1"
+  const inpuStyle = "text-accent font-normal border-b border-blue-900/50 text-lg px-1 py-1"
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -32,8 +32,8 @@ export default function Register() {
 
   return (
     <div className="h-full flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="px-12 py-12 w-120 bg-blue-100/90 rounded-3xl flex flex-col items-center justify-center gap-12">
-          <h2 className="text-blue-700/80 font-bold text-3xl">Registrarse</h2>
+      <form onSubmit={handleSubmit} className="px-12 py-12 w-120 bg-secondary rounded-3xl flex flex-col items-center justify-center gap-12">
+          <h2 className="text-accent font-bold text-3xl">Registrarse</h2>
 
           <div className="w-full flex flex-col gap-4">
             <input type="text" className={inpuStyle} name="username"

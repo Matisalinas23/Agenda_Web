@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source "./index.html";
+@source "./src/**/*.{js,ts,jsx,tsx}";
 
 html {
   margin: 0;
@@ -33,4 +35,12 @@ textarea {
 }
 ::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Tailwind my colors */
+@theme {
+  --color-background: #8aade2;
+  --color-secondary: #dbeafe;
+  --color-primary: #2b7fffcc;
+  --color-accent: #1447e6cc;
 }
