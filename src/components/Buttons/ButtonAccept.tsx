@@ -13,7 +13,7 @@ interface IAcceptButtonBase extends IAcceptButtonProps {
 
 const ButtonAccept = ({ onClick, text, type, classname, classExtension }: IAcceptButtonBase) => (
   <button onClick={onClick} type={type ?? "button"}
-    className={classname + " cursor-pointer py-2 bg-primary text-neutral-100/90 font-bold rounded-full duration-200 " + classExtension}
+    className={classname + " cursor-pointer py-2 bg-primary text-neutral-100/90 font-bold rounded-full duration-200 hover:bg-blue-400 " + classExtension}
   >
     <span className="relative">
       {text ?? "ACEPTAR"}
