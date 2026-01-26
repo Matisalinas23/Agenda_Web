@@ -1,3 +1,4 @@
+import type { IPayloadAuth } from "../../interfaces/auth.interface"
 import type { ILoginUser, IRegisterUser, IUser } from "../../interfaces/user.interface" 
 import api from "./axios"
 
@@ -19,5 +20,14 @@ export const loginHttp = async (loginValues: ILoginUser): Promise<{ token: strin
         return { token, user }
     } catch (error) {
         console.error(error.message)
+    }
+}
+
+export const authMeHttp = async (): Promise<IPayloadAuth> => {
+    try {
+        const res = await api.get(`${authUrl}/me`)
+        return res.data
+    } catch (error) {
+        console.error(error)
     }
 }

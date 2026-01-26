@@ -23,9 +23,18 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 )
 
+let isLoggingOut = false;
+
 api.interceptors.response.use(
     (response) => response,
     (error) => {
+        if (error.response?.status === 401 && !isLoggingOut) {
+            isLoggingOut = true;
+            localStorage.removeItem("token");
+            alert("La sesión ha expirado. Por favor, inicie sesión nuevamente.");
+            window.location.href = "/login";
+        }
+
         return Promise.reject(error);
     }
 )

@@ -1,9 +1,9 @@
-import { loginHttp, registerHttp } from "../data/http/auth"
+import { authMeHttp, loginHttp, registerHttp } from "../data/http/auth"
 import type { ILoginUser, IRegisterUser } from "../interfaces/user.interface"
 import useAuthStore from "../store/useAuthStore"
 
 export const useAuth = () => {
-    const { login, logout } = useAuthStore(state => state)
+    const { login, logout, setPayload } = useAuthStore(state => state)
 
     const registerUser = async (registerValues: IRegisterUser): Promise<boolean> => {
         const user = await registerHttp(registerValues)
@@ -28,9 +28,18 @@ export const useAuth = () => {
         logout()
     }
 
+    const authMe = async (): Promise<void> => {
+        const payload = await authMeHttp()
+
+        if (!payload) return
+
+        setPayload(payload)
+    }
+
     return {
         registerUser,
         loginUser,
         logoutUser,
+        authMe,
     }
 }
