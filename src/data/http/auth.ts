@@ -13,11 +13,10 @@ export const registerHttp = async (registerValues: IRegisterUser): Promise<IUser
     }
 }
 
-export const loginHttp = async (loginValues: ILoginUser): Promise<{ token: string, user: IUser }> => {
+export const loginHttp = async (loginValues: ILoginUser): Promise<string> => {
     try {
         const res = await api.post(`${authUrl}/login`, loginValues)
-        const { token, user } = res.data
-        return { token, user }
+        return res.data
     } catch (error) {
         console.error(error.message)
     }
