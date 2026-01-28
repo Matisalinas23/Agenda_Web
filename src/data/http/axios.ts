@@ -4,6 +4,7 @@ const BASE_URL = import.meta.env.VITE_LOCAL_API_URL
 
 const api = axios.create({
     baseURL: BASE_URL,
+    withCredentials: true,
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
@@ -23,16 +24,28 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 )
 
-let isLoggingOut = false;
-
 api.interceptors.response.use(
     (response) => response,
-    (error) => {
-        if (error.response?.status === 401 && !isLoggingOut) {
-            isLoggingOut = true;
-            localStorage.removeItem("token");
-            alert("La sesión ha expirado. Por favor, inicie sesión nuevamente.");
-            window.location.href = "/login";
+    async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true
+
+            try {
+                const res = await api.post("/auth/refresh")
+                const newToken = res.data
+
+                localStorage.setItem("token", newToken);
+                originalRequest.headers.Authorization = `Bearer ${newToken}`
+
+                return api(originalRequest)
+            } catch (error) {
+                localStorage.removeItem("token")
+                alert("La sesión ha expirado. Por favor, inicie sesión nuevamente.")
+                window.location.href = "/login"
+                return Promise.reject(error)
+            }
         }
 
         return Promise.reject(error);
