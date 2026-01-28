@@ -14,12 +14,13 @@ export const useAuth = () => {
     }
 
     const loginUser = async (loginValues: ILoginUser): Promise<boolean> => {
-        const { token } = await loginHttp(loginValues)
+        const token = await loginHttp(loginValues)
     
         if (!token) return false
     
         localStorage.setItem("token", token)
         login(token)
+        
         return true
     }
     
