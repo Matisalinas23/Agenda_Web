@@ -38,7 +38,7 @@ export default function Nota({ note }: { note: INote }) {
             </div>
 
             <div className="descriptionHidden">
-                <p className="bg-neutral-700/10 rounded-xl mt-4 px-3 py-1">{note.description}</p>
+                <p className="bg-white/25 rounded-xl mt-4 px-3 py-1">{note.description}</p>
             </div>
         </li>
 
