@@ -3,19 +3,19 @@ import useClickFuera from "../hooks/useClickFuera";
 import type { IFormValues } from "../screens/agenda/agenda";
 
 const colors: { code: string, name: string }[] = [
-    { code: "#E54444", name: "Rojo" },
-    { code: "#F38A48", name: "Naranja intenso" },
-    { code: "#F4B146", name: "Naranja" },
-    { code: "#F0DE51", name: "Amarillo" },
-    { code: "#BAEB5E", name: "Verde manzana" },
-    { code: "#56EB83", name: "Verde esmeralda" },
-    { code: "#6CEDED", name: "Azul turquesa" },
-    { code: "#5F62F2", name: "Azul francia" },
-    { code: "#AF78EA", name: "Morado" },
-    { code: "#E171E6", name: "Fucsia" },
-    { code: "#FF86DB", name: "Rosado" },
-    { code: "#828282", name: "Gris claro" },
-    { code: "#323232", name: "Gris oscuro" },
+    { code: "#FF8989", name: "Rojo" },
+    { code: "#FFAA74", name: "Naranja intenso" },
+    { code: "#FFCF81", name: "Naranja" },
+    { code: "#F6E878", name: "Amarillo" },
+    { code: "#D1F392", name: "Verde manzana" },
+    { code: "#87EEA6", name: "Verde esmeralda" },
+    { code: "#95F5F5", name: "Azul turquesa" },
+    { code: "#8CADFE", name: "Azul francia" },
+    { code: "#C79EF3", name: "Morado" },
+    { code: "#E7A1EA", name: "Fucsia" },
+    { code: "#FFB8E9", name: "Rosado" },
+    { code: "#B8B8B8", name: "Gris claro" },
+    { code: "#6B6B6B", name: "Gris oscuro" },
 ]
 
 export default function SeleccionarColor({ setFormValues, color}: { setFormValues: Dispatch<SetStateAction<IFormValues>>, color: string }) {

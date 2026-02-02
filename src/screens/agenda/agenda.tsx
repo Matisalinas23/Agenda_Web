@@ -48,19 +48,23 @@ export const Agenda = () => {
   }, [])
 
   return (
-    <div className="flex flex-col items-center gap-24">
+    <div className=" max-h-full py-10 flex flex-col items-center gap-24">
       <NotesList notes={notes} />
 
       {modal === null &&
         <button
-          className="cursor-pointer w-48 h-12 text-xl bg-blue-900 text-white rounded-xl text-center"
+          className="cursor-pointer w-48 h-12 text-lg bg-primary font-medium text-white rounded-full text-center"
           onClick={openCreate}
         >
           AÑADIR NOTA
         </button>
       }
 
-      {modal === "create" && <AñadirEditarNota initialValues={initialValues} onSubmit={handleCreate} closeModal={closeModal} />}
+      {modal === "create" && 
+        <div className="w-full h-full fixed inset-0 z-10 bg-black/50 flex flex-col items-center justify-center gap-12">
+          <AñadirEditarNota initialValues={initialValues} onSubmit={handleCreate} closeModal={closeModal} />
+        </div>
+      }
     </div>
   )
 }
