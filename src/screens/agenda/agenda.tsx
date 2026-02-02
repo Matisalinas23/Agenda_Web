@@ -20,7 +20,7 @@ export interface INote extends IFormValues {
 }
 
 export const Agenda = () => {
-  const { notes } = useNoteStore(state => state)
+  const { notes, orderedNotesByAssignature } = useNoteStore(state => state)
   const { modal, openCreate, closeModal } = useAgendaModals()
   const { getAllNotes, createNote } = useNotes()
 
@@ -48,8 +48,8 @@ export const Agenda = () => {
   }, [])
 
   return (
-    <div className=" max-h-full py-10 flex flex-col items-center gap-24">
-      <NotesList notes={notes} />
+    <div className="max-h-full py-10 flex flex-col items-center gap-24">
+      <NotesList notes={orderedNotesByAssignature.length !== 0 ? orderedNotesByAssignature : notes} />
 
       {modal === null &&
         <button

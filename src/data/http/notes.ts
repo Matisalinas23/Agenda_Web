@@ -56,3 +56,12 @@ export const deleteNoteHttp = async (id: number): Promise<INote> => {
         console.log(error)
     }
 }
+
+export const orderNotesByAssignatureHttp = async (): Promise<INote[]> => {
+    try {
+        const res = await api.get(`${notesUrl}/orderByAssignature`)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}

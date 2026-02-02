@@ -16,10 +16,10 @@ html, body, #root {
 body {
   min-height: 100vh;
   width: 100%;
-  background-color: #b5cff5;
+  background-color: #B5CFF5;
 }
 
-input, textarea:focus {
+input, textarea:focus, select {
   outline: none;
 }
 
@@ -32,7 +32,7 @@ textarea {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #6a74b1;
+  background: #4272b9;
   border-radius: 6px;
 }
 ::-webkit-scrollbar-track {
@@ -43,7 +43,7 @@ textarea {
 @theme {
   --color-background: #b5cff5;
   --color-secondary: #dbeafe;
-  --color-primary: #2b7fffcc;
+  --color-primary: #3686FF;
   --color-accent: #1447e6cc;
 }
 
