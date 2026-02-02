@@ -15,10 +15,9 @@ export default function NavbarDeployable() {
                 </button>
 
                 <div className="navbarDeployable">
-                    <button onClick={logoutUser}>Cerrar Sesión</button>
-                    <button onClick={logoutUser}>Cerrar Sesión</button>
-                    <button onClick={logoutUser}>Cerrar Sesión</button>
-                    <button onClick={logoutUser}>Cerrar Sesión</button>
+                    <div className="w-full text-center cursor-pointer">Tema</div> {/* Icono de tema claro oscuro */}
+                    <div className="w-full text-center cursor-pointer">Notificaciones</div> {/* Icono activer/desactivar notis implementar con servicios de google, android y windows mas tarde */}
+                    <button className="cursor-pointer" onClick={logoutUser}>Cerrar Sesión</button> {/* Icono de cerrar sesion */}
                 </div>
             </div>
     )
