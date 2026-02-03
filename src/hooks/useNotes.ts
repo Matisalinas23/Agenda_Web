@@ -1,11 +1,18 @@
 import type { IFormValues, INote } from "../screens/agenda/agenda"
 import useNoteStore from "../store/useNoteStore"
-import { createNoteHttp, deleteNoteHttp, getAllNotesHttp, orderNotesByAssignatureHttp, updateNoteHttp } from "../data/http/notes"
+import { createNoteHttp, deleteNoteHttp, getAllNotesHttp, orderNotesByAssignatureHttp, orderNotesByDateHttp, updateNoteHttp } from "../data/http/notes"
 
 
 
 export const useNotes = () => {
-    const { setNotes, addNote, editNote, deleteNote, setOrderedNotesByAssignature } = useNoteStore(state => state)
+    const {
+        setNotes,
+        addNote,
+        editNote,
+        deleteNote,
+        setOrderedNotesByAssignature,
+        setOrderedNotesByDate,
+    } = useNoteStore(state => state)
 
     const getAllNotes = async (): Promise<boolean> => {
         const notes: INote[] = await getAllNotesHttp()
@@ -48,11 +55,22 @@ export const useNotes = () => {
     }
 
     const orderNotesByAssignature = async (): Promise<boolean> => {
+
         const orderedNotes = await orderNotesByAssignatureHttp()
 
         if (!orderedNotes) return false
 
         setOrderedNotesByAssignature(orderedNotes)
+
+        return true
+    }
+
+    const orderNotesByDate = async (): Promise<boolean> => {
+        const orderedNotes = await orderNotesByDateHttp()
+
+        if (!orderedNotes) return false
+
+        setOrderedNotesByDate(orderedNotes)
 
         return true
     }
@@ -63,5 +81,6 @@ export const useNotes = () => {
         updateNote,
         removeNote,
         orderNotesByAssignature,
+        orderNotesByDate,
     }
 }

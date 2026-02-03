@@ -65,3 +65,12 @@ export const orderNotesByAssignatureHttp = async (): Promise<INote[]> => {
         console.log(error)
     }
 }
+
+export const orderNotesByDateHttp = async (): Promise<INote[]> => {
+    try {
+        const res = await api.get(`${notesUrl}/orderByDate`)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}

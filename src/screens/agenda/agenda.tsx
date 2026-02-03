@@ -20,9 +20,9 @@ export interface INote extends IFormValues {
 }
 
 export const Agenda = () => {
-  const { notes, orderedNotesByAssignature } = useNoteStore(state => state)
+  const { orderedNotes } = useNoteStore(state => state)
   const { modal, openCreate, closeModal } = useAgendaModals()
-  const { getAllNotes, createNote } = useNotes()
+  const { createNote, orderNotesByDate } = useNotes()
 
   const initialValues: IFormValues = {
     title: "",
@@ -41,15 +41,15 @@ export const Agenda = () => {
   }
 
   useEffect(() => {
-    const isFetched = getAllNotes()
-    if (!isFetched) {
+    orderNotesByDate()
+    if (orderedNotes) {
       console.log("Error fetching notes")
     }
   }, [])
 
   return (
     <div className="max-h-full py-10 flex flex-col items-center gap-24">
-      <NotesList notes={orderedNotesByAssignature.length !== 0 ? orderedNotesByAssignature : notes} />
+      <NotesList notes={orderedNotes} />
 
       {modal === null &&
         <button

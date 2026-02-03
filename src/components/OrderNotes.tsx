@@ -3,10 +3,15 @@ import { useNotes } from "../hooks/useNotes"
 
 export default function OrderNotes() {
   const [isOrder, setIsOrder] = useState<boolean>(false)
-  const { orderNotesByAssignature } = useNotes()
+  const { orderNotesByAssignature, orderNotesByDate } = useNotes()
 
   const handleOrderNotesByAssignature = () => {
     orderNotesByAssignature()
+    setIsOrder(false)
+  }
+
+  const handleOrderNotesByDate = () => {
+    orderNotesByDate()
     setIsOrder(false)
   }
 
@@ -17,13 +22,14 @@ export default function OrderNotes() {
         className="w-38 py-1 rounded-xl text-white font-normal cursor-pointer bg-primary"
         onClick={() => setIsOrder(!isOrder)}
       >
-        Filtrar por
+        Ordenar por
       </button>
 
       {isOrder &&
         <ul className="absolute w-full py-2 px-2 mt-2 z-10 bg-primary text-white rounded-xl">
           <li
             className="px-4 py-1 hover:bg-white/20 rounded-xl cursor-pointer"
+            onClick={handleOrderNotesByDate}
           >
             Por fecha
           </li>
