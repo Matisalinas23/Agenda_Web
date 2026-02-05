@@ -16,7 +16,7 @@ export default function OrderNotes() {
   }
 
   return (
-    <div className="relative w-fit">
+    <div className="relative w-fit px-4">
       <button
         type="button"
         className="w-38 py-1 rounded-xl text-white font-normal cursor-pointer bg-primary"

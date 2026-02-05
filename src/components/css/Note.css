@@ -4,6 +4,7 @@
     padding: 1rem;
     margin-bottom: 0.25rem;
     border-radius: 1.25rem;
+    transition: border-radius 0.2s ease;
 
     display: flex;
     flex-direction: column;
@@ -16,9 +17,11 @@
     position: absolute;
     left: 0;
     top: 80%;
+
     width: 100%;
     max-height: 0;
     padding: 0.5rem;
+    background-color: white;
     border-bottom-left-radius: 1.25rem;
     border-bottom-right-radius: 1.25rem;
     overflow: hidden;

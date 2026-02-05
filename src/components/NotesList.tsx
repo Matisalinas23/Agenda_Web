@@ -8,7 +8,7 @@ export default function NotesList({ notes }: { notes: INote[] }) {
             <FilterNotes />
             {notes.length === 0
                 ? <p>No hay notas</p>
-                : <ul className="h-100 w-full overflow-y-auto pr-4 flex flex-col gap-4">
+                : <ul className="h-102 w-full overflow-y-auto px-4 flex flex-col gap-4">
                     {notes.map((note, index) => (
                         <Nota key={index + 1} note={note} />
                     ))}

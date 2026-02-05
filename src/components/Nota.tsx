@@ -13,13 +13,10 @@ export default function Nota({ note }: { note: INote }) {
 
     return (
         <>
-        <li
-            className="w-full note font-medium"
-            style={{ backgroundColor: note.color, color: note.textColor }}
-        >
+        <li className="note w-full font-normal bg-white shadow-lg" >
             <div className="w-full flex gap-12">
-                <div className="w-full flex gap-12">
-                    <h2 className="min-w-44">{note.assignature}</h2>
+                <div className="w-full border-r flex items-center gap-12">
+                    <h2 className="min-w-44 px-2 font-normal rounded-lg h-fit flex items-center" style={{backgroundColor: note.color}}>{note.assignature}</h2>
                     <p>{note.title}</p>
                 </div>
 
@@ -37,8 +34,8 @@ export default function Nota({ note }: { note: INote }) {
                 </div>
             </div>
 
-            <div className="descriptionHidden" style={{backgroundColor: note.color}}>
-                <p className="rounded-xl px-2 bg-white/18 py-1">{note.description}</p>
+            <div className="descriptionHidden shadow-lg">
+                <p className="px-2 py-1">{note.description}</p>
             </div>
         </li>
 
