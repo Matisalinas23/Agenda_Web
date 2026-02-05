@@ -1,4 +1,5 @@
 .note {
+    position: relative;
     width: 100%;
     padding: 1rem;
     margin-bottom: 0.25rem;
@@ -12,16 +13,28 @@
 }
 
 .descriptionHidden {
+    position: absolute;
+    left: 0;
+    top: 80%;
     width: 100%;
     max-height: 0;
+    padding: 0.5rem;
+    border-bottom-left-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
     overflow: hidden;
     transition:
         max-height 0.3s ease,
         opacity 0.2s ease;
     opacity: 0;
+    z-index: 10;
 }
 
 .note:hover .descriptionHidden {
     max-height: 60px;
     opacity: 1;
+}
+
+.note:hover {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }

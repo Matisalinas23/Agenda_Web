@@ -1,4 +1,4 @@
-import type { INote } from "../screens/agenda/agenda" 
+import type { INote } from "./notes"
 
 export interface ILoginUser {
     email: string

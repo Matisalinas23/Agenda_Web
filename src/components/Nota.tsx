@@ -1,4 +1,4 @@
-import type { INote } from "../screens/agenda/agenda";
+import type { INote } from "../interfaces/notes"; 
 import EditNote from "./modals/EditNote";
 import useAgendaModals from "../hooks/useAgendaModals";
 import DeleteNote from "./modals/DeleteNote";
@@ -37,8 +37,8 @@ export default function Nota({ note }: { note: INote }) {
                 </div>
             </div>
 
-            <div className="descriptionHidden">
-                <p className="bg-white/25 rounded-xl mt-4 px-3 py-1">{note.description}</p>
+            <div className="descriptionHidden" style={{backgroundColor: note.color}}>
+                <p className="rounded-xl px-2 bg-white/18 py-1">{note.description}</p>
             </div>
         </li>
 

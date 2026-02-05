@@ -1,6 +1,6 @@
-import { useRef, useState, type Dispatch, type SetStateAction } from "react"
+import { useRef, type Dispatch, type SetStateAction } from "react"
 import useClickFuera from "../hooks/useClickFuera"; 
-import type { IFormValues } from "../screens/agenda/agenda";
+import type { ICreateNote } from "../interfaces/notes"; 
 
 const colors: { code: string, name: string }[] = [
     { code: "#FF8989", name: "Rojo" },
@@ -18,55 +18,39 @@ const colors: { code: string, name: string }[] = [
     { code: "#6B6B6B", name: "Gris oscuro" },
 ]
 
-export default function SeleccionarColor({ setFormValues, color}: { setFormValues: Dispatch<SetStateAction<IFormValues>>, color: string }) {
-    const [openList, setOpenList] = useState<boolean>(false)
+type SeleccionarColorProps = {
+    setFormValues: Dispatch<SetStateAction<ICreateNote>>,
+    setButtonColor: (el: string) => void,
+    closeModal: () => void,
+}
+
+export default function SeleccionarColor({ setFormValues, setButtonColor, closeModal }: SeleccionarColorProps) {
     const componentRef = useRef<HTMLDivElement>(null);
 
-    const handleOpenList = () => {
-        setOpenList(!openList)
-    }
-
     const handleSelectColor = (col: { code: string, name: string }) => {
+        setButtonColor(col.code)
         setFormValues(prev => ({
             ...prev,
             color: col.code
         }))
 
-        setOpenList(false)
+        closeModal()
     }
 
-    useClickFuera(componentRef, () => { setOpenList(false) })
+    useClickFuera(componentRef, () => { closeModal() })
 
     return (
-        <div className="relative" ref={componentRef}>
-            <div
-                onClick={handleOpenList} className="bg-neutral-500 cursor-pointer py-2 pl-2"
-                style={openList ? {borderRadius: "12px 12px 0px 0px"} : {borderRadius: "12px"}}
-            >
-                {!color
-                    ? <p>Seleccionar color</p>
-                    : <div className="flex items-center gap-2">
-                        <div style={{ backgroundColor: color }} className="h-4 w-4 rounded-full"></div>
-                        {colors.map((c) => c.code === color && (<p>{c.name}</p>))}
-                    </div>
-                }
-            </div>
-
-            {openList &&
-                <div className="absolute w-full h-60 p-2 rounded-b-xl bg-neutral-500">
-                    <ul id="color" className="w-full h-full overflow-y-auto border-neutral-400 pr-2 flex flex-col gap-2">
-                        {colors.map((c, index) => (
-                            <li
-                                className="cursor-pointer duration-300 hover:bg-neutral-400 rounded-xl px-3 py-1 flex items-center gap-2"
-                                key={index} value={`option${index+1}`} onClick={() => handleSelectColor(c)}
-                            >
-                                <div className="h-4 w-4 rounded-full" style={{ backgroundColor: c.code }}></div>
-                                {c.name}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            }
+        <div className="absolute right-0 top-22 z-10 h-26 w-fit p-2 rounded-xl bg-white" ref={componentRef}>
+            <ul className="h-full overflow-y-auto flex flex-col gap-2">{colors.map(c => (
+                <li
+                    key={c.name}
+                    onClick={() => handleSelectColor(c)}
+                    className="px-2 mr-1 rounded-lg flex items-center gap-2 cursor-pointer hover:bg-neutral-100"
+                >
+                    <div className="h-3 w-3 rounded-full" style={{backgroundColor: c.code}}></div>
+                    {c.name}
+                </li>
+            ))}</ul>
         </div>
     )
 }

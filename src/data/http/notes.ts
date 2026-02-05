@@ -1,4 +1,4 @@
-import type { IFormValues, INote } from "../../screens/agenda/agenda"
+import type { ICreateNote, INote } from "../../interfaces/notes"
 import api from "./axios"
 
 const notesUrl = "/notes"
@@ -12,7 +12,7 @@ export const getAllNotesHttp = async (): Promise<INote[]> => {
     }
 }
 
-export const createNoteHttp = async (formValues: IFormValues): Promise<INote> => {
+export const createNoteHttp = async (formValues: ICreateNote): Promise<INote> => {
     const { assignature, title, description, color, limitDate } = formValues
     const [year, month, day] = limitDate.split("-").map(Number)
 
@@ -30,7 +30,7 @@ export const createNoteHttp = async (formValues: IFormValues): Promise<INote> =>
     }
 }
 
-export const updateNoteHttp = async (id: number, updatedNote: IFormValues): Promise<INote> => {
+export const updateNoteHttp = async (id: number, updatedNote: ICreateNote): Promise<INote> => {
     const { assignature, title, description, color, limitDate } = updatedNote
     const [year, month, day] = limitDate.split("-").map(Number)
 

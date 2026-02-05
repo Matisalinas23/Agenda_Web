@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type ModalType = "create" | "edit" | "delete" | "view" | null;
+export type ModalType = "create" | "edit" | "delete" | "view" | null;
 
 export default function useAgendaModals() {
     const [modal, setModal] = useState<ModalType>(null);

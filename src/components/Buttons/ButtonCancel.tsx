@@ -9,7 +9,7 @@ interface ICancelButtonBase extends ICancelButtonProps{
 
 const ButtonCancel = ({ onClick, text, classname }: ICancelButtonBase) => (
   <button onClick={onClick}
-    className={"cursor-pointer py-2 bg-neutral-800 text-white rounded-full font-bold duration-200 hover:bg-neutral-600 " + classname}
+    className={"cursor-pointer py-2 bg-neutral-700 text-white rounded-full font-bold duration-200 hover:bg-neutral-600 " + classname}
   >
     {text ?? "CANCELAR"}
   </button>

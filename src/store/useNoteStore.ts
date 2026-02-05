@@ -1,9 +1,8 @@
 import { create } from "zustand";
-import type { INote } from "../screens/agenda/agenda";
+import type { INote } from "../interfaces/notes"; 
 
 interface INoteStore {
     notes: INote[]
-    orderedNotes: INote[]
     setNotes: (notes: INote[]) => void
     addNote: (note: INote) => void
     editNote: (updatedNote: INote) => void
@@ -14,7 +13,6 @@ interface INoteStore {
 
 const useNoteStore = create<INoteStore>((set) => ({
     notes: [],
-    orderedNotes: [],
     setNotes: (notes: INote[]) => set({ notes }),
     addNote: (note) => set((state) => ({ notes: [...state.notes, note] })),
     editNote: (updatedNote) => set((state) => ({
@@ -23,8 +21,8 @@ const useNoteStore = create<INoteStore>((set) => ({
     deleteNote: (id) => set((state) => ({
         notes: state.notes.filter((note) => note.id !== id )
     })),
-    setOrderedNotesByAssignature: (orderedNotesByAssignature) => (set({ orderedNotes: orderedNotesByAssignature })),
-    setOrderedNotesByDate: (orderedNotesByDate) => (set({ orderedNotes: orderedNotesByDate })),
+    setOrderedNotesByAssignature: (orderedNotesByAssignature) => (set({ notes: orderedNotesByAssignature })),
+    setOrderedNotesByDate: (orderedNotesByDate) => (set({ notes: orderedNotesByDate })),
 }))
 
 export default useNoteStore

@@ -1,6 +1,6 @@
-import type { IFormValues, INote } from "../screens/agenda/agenda"
 import useNoteStore from "../store/useNoteStore"
 import { createNoteHttp, deleteNoteHttp, getAllNotesHttp, orderNotesByAssignatureHttp, orderNotesByDateHttp, updateNoteHttp } from "../data/http/notes"
+import type { ICreateNote, INote } from "../interfaces/notes"
 
 
 
@@ -24,7 +24,7 @@ export const useNotes = () => {
         return true
     }
 
-    const createNote = async (formValues: IFormValues): Promise<boolean> => {
+    const createNote = async (formValues: ICreateNote): Promise<boolean> => {
         const note: INote = await createNoteHttp(formValues)
 
         if (!note) return false
@@ -34,7 +34,7 @@ export const useNotes = () => {
         return true
     }
 
-    const updateNote = async (id: number, formValues: IFormValues): Promise<boolean> => {
+    const updateNote = async (id: number, formValues: ICreateNote): Promise<boolean> => {
         const updatedNote = await updateNoteHttp(id, formValues)
 
         if (!updatedNote) return false
