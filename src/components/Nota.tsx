@@ -24,10 +24,10 @@ export default function Nota({ note }: { note: INote }) {
                     <p>{formatDate(note.limitDate)}</p>
 
                     <div className="flex gap-4">
-                        <button className="w-6.5 h-6.5 rounded-lg cursor-pointer flex items-center justify-center" onClick={openEdit}>
+                        <button className="w-6.5 h-6.5 text-primary rounded-lg cursor-pointer flex items-center justify-center" onClick={openEdit}>
                             <EditIcon />
                         </button>
-                        <button className="w-6.5 h-6.5 cursor-pointer" onClick={openDelete}>
+                        <button className="w-6.5 h-6.5 text-primary cursor-pointer" onClick={openDelete}>
                             <DeleteIcon />
                         </button>
                     </div>
