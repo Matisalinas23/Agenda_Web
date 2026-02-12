@@ -5,7 +5,7 @@ import DeleteNote from "./modals/DeleteNote";
 import useDate from "../hooks/useDate";
 import "./css/Note.css"
 import { EditIcon } from "./Icons/EditIcon";
-import { DeleteIcon } from "./Icons/DeleteIcons";
+import { DeleteIcon } from "./Icons/DeleteIcon";
 
 export default function Nota({ note }: { note: INote }) {
     const { modal, openEdit, openDelete, closeModal } = useAgendaModals()

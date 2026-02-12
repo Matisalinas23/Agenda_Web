@@ -2,6 +2,8 @@ import { type FormEvent } from "react"
 import useForm from "../hooks/useForm" 
 import { useAuth } from "../hooks/useAuth"
 import { Link, useNavigate } from "react-router-dom"
+import { ButtonRegister as ButtonLogin } from "../components/Buttons/ButtonAccept"
+import { RegisterLoginUserIcon } from "../components/Icons/RegisterLoginUserIcon"
 
 export default function Login() {
     const { formValues, handleChange } = useForm({
@@ -26,28 +28,29 @@ export default function Login() {
     }
 
     return (
-        <div className="h-full flex border flex-col items-center justify-center gap-4">
-            <div className="text-white h-100 w-80 bg-neutral-500 px-10 py-20
-                flex flex-col justify-center items-center gap-8"
-            >
-                <div className="h-20 w-18 rounded-full border-2 border-neutral-800"></div>
-
-                <form className=" text-white w-full flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <input className="bg-neutral-800 px-2 py-1" name="email"
-                        value={formValues.email} onChange={handleChange} type="text" placeholder="email"
-                    />
-                    <input className="bg-neutral-800 px-2 py-1" name="password"
-                        value={formValues.password} onChange={handleChange} type="password"
-                        hidden={false} placeholder="Contraseña"
-                    />
-
-                    <div className="w-full flex justify-between">
-                        <button type="submit" className="bg-blue-500 w-24 py-2 rounded-xl cursor-pointer">Iniciar Sesion</button>
+        <div className="h-full flex border flex-col items-center justify-center gap-8">
+            <form className=" text-white w-fit bg-secondary rounded-3xl p-12 flex flex-col gap-12 items-center" onSubmit={handleSubmit}>
+                    <div className="h-16 w-16">
+                        <RegisterLoginUserIcon />
                     </div>
-                </form>
-            </div>
+                    
+                    <div className="flex flex-col gap-4">
+                        <input className="text-accent font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="email"
+                            value={formValues.email} onChange={handleChange} type="text" placeholder="Correo"
+                        />
+                        <input className="text-accent font-normal border-b border-blue-900/50 text-lg px-1 py-1 mb-4" name="password"
+                            value={formValues.password} onChange={handleChange} type="password"
+                            hidden={false} placeholder="Contraseña"
+                        />
+                    </div>
 
-            <Link to={"/register"} className="hover:text-blue-700 active:text-blue-400">Crear una cuenta</Link>
+                    <ButtonLogin type="submit" text="Iniciar sesión" />
+                </form>
+
+            <div className="flex gap-2">
+                <p>¿Aún no tienes una cuenta?</p>
+                <Link to={"/register"} className="text-blue-700 hover:text-blue-500 active:text-blue-400">Crear una cuenta</Link>
+            </div>
         </div>
     )
 }
