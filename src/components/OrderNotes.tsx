@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useNotes } from "../hooks/useNotes"
+import useClickFuera from "../hooks/useClickFuera"
 
 export default function OrderNotes() {
-  const [isOrder, setIsOrder] = useState<boolean>(false)
-  const { orderNotesByAssignature, orderNotesByDate } = useNotes()
+  const [isOrder, setIsOrder] = useState<boolean>(false);
+  const { orderNotesByAssignature, orderNotesByDate } = useNotes();
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const handleOrderNotesByAssignature = () => {
     orderNotesByAssignature()
@@ -15,18 +17,20 @@ export default function OrderNotes() {
     setIsOrder(false)
   }
 
+  useClickFuera(componentRef, () => { setIsOrder(false) })
+
   return (
-    <div className="relative w-50 ml-4">
+    <div className="relative w-50 ml-4" ref={componentRef}>
       <button
         type="button"
-        className="w-full py-1 rounded-xl text-white font-normal cursor-pointer bg-primary"
+        className="w-full h-8 p-1 rounded-xl text-white font-normal cursor-pointer shadow-gray-400/60 duration-200 shadow-lg bg-primary"
         onClick={() => setIsOrder(!isOrder)}
       >
         Ordenar por
       </button>
 
       {isOrder &&
-        <ul className="absolute w-full mt-2 p-2 z-20 bg-primary text-white rounded-xl">
+        <ul className="absolute w-full mt-2 p-2 z-20 bg-primary text-white rounded-xl shadow-lg">
             <li
               className="px-3 py-1 hover:bg-white/20 rounded-xl cursor-pointer"
               onClick={handleOrderNotesByDate}
