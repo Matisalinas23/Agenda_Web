@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react"
+import { type FormEvent } from "react"
 import useForm from "../hooks/useForm"
 import type { ICreateNote } from "../interfaces/notes"
 import SeleccionarColor from "./SeleccionarColor"
@@ -8,9 +8,6 @@ import { ButtonCancelMedium } from "./Buttons/ButtonCancel"
 import { useNotes } from "../hooks/useNotes"
 
 export default function AñadirNota({ closeModal }: { closeModal: () => void }) {
-    const [openSelectColor, setOpenSelectColor] = useState<boolean>(false);
-    const [buttonColor, setButtonColor] = useState<string | null>(null);
-
     const { año } = useDate()
     const { createNote } = useNotes()
     const { formValues, setFormValues, handleChange } = useForm<ICreateNote>({
@@ -20,10 +17,6 @@ export default function AñadirNota({ closeModal }: { closeModal: () => void }) 
         color: "",
         limitDate: "",
     })
-
-    const handleOpenSelectColor = () => {
-        setOpenSelectColor(!openSelectColor)
-    }
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>, formValues: ICreateNote) => {
         e.preventDefault()
@@ -67,14 +60,7 @@ export default function AñadirNota({ closeModal }: { closeModal: () => void }) 
                     ></textarea>
                 </div>
 
-                <button
-                    className="w-13 h-12 rounded-full cursor-pointer"
-                    style={buttonColor ? {backgroundColor: buttonColor} : {backgroundColor: "#3686FF"}}
-                    onClick={handleOpenSelectColor}
-                >
-                </button>
-
-                {openSelectColor && <SeleccionarColor setFormValues={setFormValues} setButtonColor={setButtonColor} closeModal={() => setOpenSelectColor(false)} />}
+                <SeleccionarColor setFormValues={setFormValues} />
             </div>
 
             <div className="flex justify-between">

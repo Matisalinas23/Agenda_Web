@@ -8,7 +8,7 @@ export default function useClickFuera<T extends HTMLElement>(ref: RefObject<T>, 
     }
     
     useEffect(() => {
-        document.addEventListener("mousedown", handleOutsideClick);
-        return () => document.removeEventListener("mousedown", handleOutsideClick);
+        document.addEventListener("click", handleOutsideClick);
+        return () => document.removeEventListener("click", handleOutsideClick);
     }, [ref, onOutsideCLick]);
 }

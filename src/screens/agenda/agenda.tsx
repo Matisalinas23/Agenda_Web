@@ -6,7 +6,7 @@ import { useNotes } from "../../hooks/useNotes";
 import AñadirNota from "../../components/AnadirNota";
 
 export const Agenda = () => {
-  const { notes } = useNoteStore(state => state)
+  const notes = useNoteStore(state => state.notes)
   const { modal, openCreate, closeModal } = useAgendaModals()
   const { orderNotesByDate } = useNotes()
 
@@ -23,7 +23,7 @@ export const Agenda = () => {
 
       {modal === null ?
         <button
-          className="cursor-pointer w-48 h-12 text-lg bg-primary font-medium text-white rounded-full text-center duration-200 hover:bg-primary/80"
+          className="cursor-pointer w-48 h-12 text-lg bg-primary font-medium text-white rounded-full text-center shadow-lg duration-200 hover:bg-primary/80"
           onClick={openCreate}
         >
           AÑADIR NOTA
