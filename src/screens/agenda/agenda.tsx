@@ -12,7 +12,7 @@ export const Agenda = () => {
 
   useEffect(() => {
     orderNotesByDate()
-    if (notes) {
+    if (!notes) {
       console.log("Error fetching notes")
     }
   }, [])

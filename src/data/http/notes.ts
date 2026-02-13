@@ -15,6 +15,8 @@ export const getAllNotesHttp = async (): Promise<INote[]> => {
 export const createNoteHttp = async (formValues: ICreateNote): Promise<INote> => {
     const { assignature, title, description, color, limitDate } = formValues
     const [year, month, day] = limitDate.split("-").map(Number)
+    console.log(limitDate)
+    console.log(new Date(year, month - 1, day))
 
     try {
         const res = await api.post(notesUrl, {
@@ -26,7 +28,7 @@ export const createNoteHttp = async (formValues: ICreateNote): Promise<INote> =>
         })
         return res.data
     } catch (error) {
-        console.log(error)
+        console.error("Error creating a note", error.response.data)
     }
 }
 
