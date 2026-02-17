@@ -44,7 +44,7 @@ export default function Login() {
                         />
                     </div>
 
-                    <ButtonLogin type="submit" text="Iniciar sesión" />
+                    <ButtonLogin type="submit" text="Iniciar sesión" /> {/* This button is a ButtonRegister component used as ButtonLogin */}
                 </form>
 
             <div className="flex gap-2">
