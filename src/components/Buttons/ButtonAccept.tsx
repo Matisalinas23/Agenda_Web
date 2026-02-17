@@ -19,7 +19,7 @@ const ButtonAccept = ({ onClick, text, type, classname, classExtension }: IAccep
       {text ?? "ACEPTAR"}
     </span>
   </button>
-) // space at start and end off className is very important
+) // space at start and end of the className is very important
 
 export const ButtonAcceptBig = ({ onClick, text, type }: IAcceptButtonProps) => (
   <ButtonAccept onClick={onClick} text={text} type={type} classExtension="text-xl w-full" />
