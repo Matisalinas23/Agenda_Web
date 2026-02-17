@@ -4,7 +4,6 @@ import DeleteNote from "./modals/DeleteNote";
 import useDate from "../hooks/useDate";
 import { EditIcon } from "./Icons/EditIcon";
 import { DeleteIcon } from "./Icons/DeleteIcon";
-import { ButtonIcon } from "./Buttons/ButtonIcon";
 import "./css/Note.css"
 
 type NoteProps = {
@@ -29,12 +28,20 @@ export default function Nota({ note, setIsEditingNote }: NoteProps) {
                 <div className="flex items-center gap-12">
                     <p>{formatDate(note.limitDate)}</p>
                     <div className="flex gap-4">
-                        <ButtonIcon type="button" width="6.5" height="6.5" color="primary" onClick={() => setIsEditingNote(true)}>
+                        <button
+                            type="button"
+                            className="w-6.5 h-6.5 text-primary cursor-pointer flex justify-center items-center"
+                            onClick={() => setIsEditingNote(true)}
+                            >
                             <EditIcon />
-                        </ButtonIcon>
-                        <ButtonIcon type="button" width="6.5" height="6.5" color="primary" onClick={openDelete}>
+                        </button>
+                        <button
+                            type="button"
+                            className="w-6.5 h-6.5 text-primary cursor-pointer flex justify-center items-center"
+                            onClick={openDelete}
+                            >
                             <DeleteIcon />
-                        </ButtonIcon>
+                        </button>
                     </div>
                 </div>
             </div>

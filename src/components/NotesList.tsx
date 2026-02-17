@@ -17,21 +17,19 @@ const NoteItem = ({ note }) => {
         limitDate: toInputDate(note.limitDate),
     }
 
+    if (isEditingNote) return (
+        <EditNote
+            initialValues={initialValues}
+            setIsEditingNote={setIsEditingNote}
+            note={note}
+        />
+    )
+
     return (
-        <>
-            {isEditingNote ? (
-                <EditNote
-                    initialValues={initialValues}
-                    setIsEditingNote={setIsEditingNote}
-                    note={note}
-                />
-            ) : (
-                <Nota
-                    note={note}
-                    setIsEditingNote={setIsEditingNote}
-                />
-            )}
-        </>
+        <Nota
+            note={note}
+            setIsEditingNote={setIsEditingNote}
+        />
     );
 }
 

@@ -3,7 +3,6 @@ import useForm from "../hooks/useForm"
 import type { ICreateNote, INote } from "../interfaces/notes"
 import { useNotes } from "../hooks/useNotes"
 import useDate from "../hooks/useDate"
-import { ButtonIcon } from "./Buttons/ButtonIcon"
 import { AcceptIcon } from "./Icons/AcceptIcon"
 import "./css/Note.css"
 
@@ -62,9 +61,12 @@ export default function EditNote({ initialValues, setIsEditingNote, note }: Edit
                         max={`${año}-12-31`}
                         className="bg-neutral-100 px-1 rounded-lg"
                     />
-                    <ButtonIcon type="submit" width="6.5" height="6.5" color="primary" onClick={()=>{}}>
+                    <button
+                        type="submit"
+                        className="w-6.5 h-6.5 text-primary cursor-pointer flex justify-center items-center"
+                    >
                         <AcceptIcon />
-                    </ButtonIcon>
+                    </button>
                 </div>
                 <div className="descriptionHidden shadow-lg">
                     <input
