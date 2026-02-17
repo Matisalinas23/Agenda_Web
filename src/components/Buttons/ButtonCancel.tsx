@@ -8,22 +8,22 @@ interface ICancelButtonBase extends ICancelButtonProps{
 }
 
 const ButtonCancel = ({ onClick, text, classname }: ICancelButtonBase) => (
-  <button onClick={onClick}
+  <button
     className={"cursor-pointer py-2 bg-neutral-700 text-white rounded-full font-bold duration-200 hover:bg-neutral-600 " + classname}
+    onClick={onClick}
   >
     {text ?? "CANCELAR"}
   </button>
 )
 
 export const ButtonCancelBig = ({ onClick, text }: ICancelButtonProps) => (
-  <ButtonCancel onClick={onClick} text={text} classname="text-xl w-full" />
+  <ButtonCancel classname="text-xl w-full" onClick={onClick} text={text} />
 )
 
 export const ButtonCancelMedium = ({ onClick, text }: ICancelButtonProps) => (
-  <ButtonCancel onClick={onClick} text={text} classname="w-48" />
+  <ButtonCancel classname="w-48" onClick={onClick} text={text} />
 )
 
-
 export const ButtonCancelSmall = ({ onClick, text }: ICancelButtonProps) => (
-  <ButtonCancel onClick={onClick} text={text} classname="text-sm w-24" />
+  <ButtonCancel classname="text-sm w-24" onClick={onClick} text={text} />
 )
