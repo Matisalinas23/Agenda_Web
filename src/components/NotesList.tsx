@@ -1,34 +1,53 @@
-import type { INote } from "../interfaces/notes";
+import type { ICreateNote, INote } from "../interfaces/notes";
 import FilterNotes from "./OrderNotes";
 import Nota from "./Nota";
 import { useState } from "react";
 import useDate from "../hooks/useDate";
+import EditNote from "./EditNote";
+
+const NoteItem = ({ note }) => {
+    const [isEditingNote, setIsEditingNote] = useState<boolean>(false);
+    const { toInputDate } = useDate();
+
+    const initialValues: ICreateNote = {
+        title: note.title,
+        assignature: note.assignature,
+        description: note.description,
+        color: note.color,
+        limitDate: toInputDate(note.limitDate),
+    }
+
+    return (
+        <>
+            {isEditingNote ? (
+                <EditNote
+                    initialValues={initialValues}
+                    setIsEditingNote={setIsEditingNote}
+                    note={note}
+                />
+            ) : (
+                <Nota
+                    note={note}
+                    setIsEditingNote={setIsEditingNote}
+                />
+            )}
+        </>
+    );
+}
 
 export default function NotesList({ notes }: { notes: INote[] }) {
-    const [noteId, setNoteId] = useState<number | null>(null);
-    const { toInputDate } = useDate();
+    if (notes.length === 0) return (
+        <div className="w-1/2 flex flex-col gap-4">
+            <p>No hay notas</p>
+        </div>
+    )
 
     return (
         <div className="w-1/2 flex flex-col gap-4">
             <FilterNotes />
-            {notes.length === 0
-                ? <p>No hay notas</p>
-                : <ul className="h-102 w-full overflow-y-auto px-4 flex flex-col gap-4">
-                    {notes.map((note) => {
-                        const initialValues = {
-                            title: note.title,
-                            assignature: note.assignature,
-                            description: note.description,
-                            color: note.color,
-                            limitDate: toInputDate(note.limitDate),
-                        }
-
-                        return (
-                            <Nota key={note.id} note={note} setNoteId={setNoteId} noteId={noteId} initialValues={initialValues} />
-                        )
-                    })}
-                </ul>
-            }
+            <ul className="h-102 w-full overflow-y-auto px-4 flex flex-col gap-4">
+                {notes.map((note) => <NoteItem key={note.id} note={note} />)}
+            </ul>
         </div>
     )
 }
