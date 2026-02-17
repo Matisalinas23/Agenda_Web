@@ -9,6 +9,7 @@ import type { Dispatch, FormEvent, SetStateAction } from "react";
 import { AcceptIcon } from "./Icons/AcceptIcon";
 import useForm from "../hooks/useForm";
 import { useNotes } from "../hooks/useNotes";
+import { ButtonIcon } from "./Buttons/ButtonIcon";
 
 type NoteProps = {
     note: INote
@@ -48,17 +49,17 @@ export default function Nota({ note, setNoteId, noteId, initialValues }: NotePro
             {/* Note component is actually an editing note component */}
             <form onSubmit={handleSubmit} className="note bg-white shadow-lg">
                 <div className="w-full flex gap-12">
-                    <div className="w-full pr-8 border-r flex items-center gap-8">
+                    <div className="w-full pr-8 flex items-center gap-8">
                         <h2 className="min-w-44 px-2 font-normal rounded-lg h-fit flex items-center" style={{ backgroundColor: note.color }}>
                             {note.assignature}
                         </h2>
+
                         {noteId === note.id ?
                             <input type="text" name="title" value={formValues.title} onChange={handleChange} className="w-full bg-neutral-100 px-2 rounded-lg" />
                         :
                             <p className="w-full">{note.title}</p>
                         }
                     </div>
-
                     <div className="flex items-center gap-12">
                         {noteId === note.id ?
                             <input type="date" name="limitDate" value={formValues.limitDate} onChange={handleChange}
@@ -69,23 +70,21 @@ export default function Nota({ note, setNoteId, noteId, initialValues }: NotePro
                         }
 
                         {noteId === note.id ?
-                                <button type="submit" className="w-6.5 h-6.5 text-primary rounded-lg cursor-pointer flex items-center justify-center">
-                                    <AcceptIcon />
-                                </button>
+                            <ButtonIcon type="submit" width="6.5" height="6.5" color="primary" onClick={()=>{}}>
+                                <AcceptIcon />
+                            </ButtonIcon>
                             :
-                                <div className="flex gap-4">
-                                    <button type="button" onClick={() => setNoteId(note.id)}className="w-6.5 h-6.5 text-primary rounded-lg cursor-pointer flex items-center justify-center">
-                                        <EditIcon />
-                                    </button>
-                                    <button type="button" className="w-6.5 h-6.5 text-primary cursor-pointer" onClick={openDelete}>
-                                        <DeleteIcon />
-                                    </button>
-                                </div>
-                            }
-                        
+                            <div className="flex gap-4">
+                                <ButtonIcon type="button" width="6.5" height="6.5" color="primary" onClick={() => setNoteId(note.id)}>
+                                    <EditIcon />
+                                </ButtonIcon>
+                                <ButtonIcon type="button" width="6.5" height="6.5" color="primary" onClick={openDelete}>
+                                    <DeleteIcon />
+                                </ButtonIcon>
+                            </div>
+                        }
                     </div>
                 </div>
-
                 <div className="descriptionHidden shadow-lg">
                     {noteId === note.id ?
                         <input type="text" name="description" value={formValues.description} onChange={handleChange} className="w-full bg-neutral-100 rounded-lg px-2"/>
