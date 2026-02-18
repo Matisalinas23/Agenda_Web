@@ -1,9 +1,12 @@
 .navbarSideSection {
     position: absolute;
+    top: 100%;
     right: 0;
-    min-height: 3.5rem;
-    width: 20rem;
-    border-radius: 1rem;
+    min-height: 0rem;
+    width: 100%;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    background-color: #3686FF;
 
     display: flex;
     flex-direction: column;
@@ -12,7 +15,7 @@
 }
 
 .navbarDeployable {
-    width: 16rem;
+    width: 100%;
     max-height: 0;
     overflow: hidden;
     transition:
@@ -23,15 +26,19 @@
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
 }
 
 .navbarSideSection.open .navbarDeployable {
     max-height: 12rem;
     width: 100%;
+    border-radius: 1rem;
     opacity: 1;
-    padding: 1rem 0rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    background-color: #737373;
+    background-color: #4e95ff;
+    padding: 0.5rem;
+}
+
+.navbarSideSection.open {
+    padding: 0rem 1rem 1rem 1rem;
 }
