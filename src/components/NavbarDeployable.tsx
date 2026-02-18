@@ -10,7 +10,7 @@ export default function NavbarDeployable() {
     const { logoutUser } = useAuth()
     const [isOpenDepoyable, setIsOpenDepoyable] = useState<boolean>(false)
     return (
-        <div className="relative w-[22%] flex items-center justify-center">
+        <div className="relative w-[16%] flex items-center justify-center">
             <button
                 className=" h-9 w-9 cursor-pointer"
                 onClick={() => setIsOpenDepoyable(!isOpenDepoyable)}
@@ -19,20 +19,20 @@ export default function NavbarDeployable() {
             </button>
             <div className={`navbarSideSection ${isOpenDepoyable ? "open" : ""}`}>
                 <ul className="navbarDeployable">
-                    <li className="w-full px-20 text-center cursor-pointer rounded-lg hover:bg-blue-400 flex justify-start">
-                        <button className="h-5 flex items-center gap-4">
+                    <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
+                        <button className="h-6 cursor-pointer flex items-center gap-4">
                             <DarkModeIcon />
                             Tema
                         </button>
                     </li>
-                    <li className="w-full px-20 text-center cursor-pointer rounded-lg hover:bg-blue-400 flex justify-start">
-                        <button>
+                    <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
+                        <button className="h-6 cursor-pointer flex items-center gap-4">
                             <NotificationsIcon />
                             Notificaciones
                         </button>
                     </li>
-                    <li className="w-full px-20 text-center cursor-pointer rounded-lg hover:bg-blue-400 flex justify-start">
-                        <button className="w-full" onClick={logoutUser}>
+                    <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
+                        <button className="h-6 cursor-pointe flex items-center gap-4" onClick={logoutUser}>
                             <LogOutIcon />
                             Cerrar Sesión
                         </button>
