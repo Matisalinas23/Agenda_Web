@@ -23,14 +23,14 @@ export default function OrderNotes() {
     <div className="relative w-50 ml-4" ref={componentRef}>
       <button
         type="button"
-        className="w-full h-8 p-1 rounded-xl text-white font-normal cursor-pointer shadow-gray-400/60 duration-200 shadow-lg bg-primary"
+        className="w-full h-8 p-1 rounded-xl text-white font-normal cursor-pointer duration-200 shadow-lg bg-primary dark:bg-primary-dark"
         onClick={() => setIsOrder(!isOrder)}
       >
         Ordenar por
       </button>
 
       {isOrder &&
-        <ul className="absolute w-full mt-2 p-2 z-20 bg-primary text-white rounded-xl shadow-lg">
+        <ul className="absolute w-full mt-2 p-2 z-20 text-white shadow-lg bg-primary dark:bg-primary-dark rounded-xl">
             <li
               className="px-3 py-1 hover:bg-white/20 rounded-xl cursor-pointer"
               onClick={handleOrderNotesByDate}

@@ -4,8 +4,20 @@
     inset: 0;
     transform: translateX(-100%);
     background: linear-gradient(150deg,
-            rgb(122, 72, 240) 0%,
-            #6972facc);
+        rgb(122, 72, 240) 0%,
+        #6972facc);
+    transition: transform .35s ease;
+    z-index: 0;
+}
+
+.dark .button-register::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(150deg,
+        rgb(101, 47, 230) 0%,
+        #414bdacc);
     transition: transform .35s ease;
     z-index: 0;
 }

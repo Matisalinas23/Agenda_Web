@@ -5,6 +5,7 @@ import { RegisterLoginUserIcon } from "./Icons/RegisterLoginUserIcon"
 import { DarkModeIcon } from "./Icons/DarkModeIcon"
 import { NotificationsIcon } from "./Icons/NotificationsIcon"
 import { LogOutIcon } from "./Icons/LogOutIcon"
+import { toggleTheme } from "../utils/theme"
 
 export default function NavbarDeployable() {
     const { logoutUser } = useAuth()
@@ -20,7 +21,10 @@ export default function NavbarDeployable() {
             <div className={`navbarSideSection ${isOpenDepoyable ? "open" : ""}`}>
                 <ul className="navbarDeployable">
                     <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
-                        <button className="h-6 cursor-pointer flex items-center gap-4">
+                        <button
+                            className="h-6 cursor-pointer flex items-center gap-4"
+                            onClick={toggleTheme}
+                        >
                             <DarkModeIcon />
                             Tema
                         </button>

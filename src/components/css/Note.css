@@ -31,6 +31,10 @@
     opacity: 0;
     z-index: 10;
 }
+.dark .descriptionHidden {
+    background-color: var(--color-secondary-dark);
+    color: white;
+}
 
 .note:hover .descriptionHidden {
     max-height: 68px;

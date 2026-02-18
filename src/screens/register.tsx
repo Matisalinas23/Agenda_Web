@@ -29,18 +29,18 @@ export default function Register() {
   }
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="px-12 py-12 w-120 bg-secondary rounded-3xl flex flex-col items-center justify-center gap-12">
-          <h2 className="text-accent font-bold text-3xl">Registrarse</h2>
+    <div className="h-full flex bg-background dark:bg-background-dark items-center justify-center">
+      <form onSubmit={handleSubmit} className="px-12 py-12 w-120 bg-secondary dark:bg-secondary-dark rounded-3xl flex flex-col items-center justify-center gap-12">
+          <h2 className="text-accent dark:text-accent-dark font-bold text-3xl">Registrarse</h2>
 
           <div className="w-full flex flex-col gap-4">
-            <input type="text" className="text-accent font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="username"
+            <input type="text" className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="username"
               onChange={handleChange} value={formValues.username} placeholder="Nombre de usuario"
             />
-            <input type="text" className="text-accent font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="email"
+            <input type="text" className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="email"
               onChange={handleChange} value={formValues.email} placeholder="Correo electrónico"
             />
-            <input type="password" className="text-accent font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="password"
+            <input type="password" className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="password"
               onChange={handleChange} value={formValues.password} placeholder="Contraseña"
             />
           </div>

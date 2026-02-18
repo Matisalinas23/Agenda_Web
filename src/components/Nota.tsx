@@ -16,17 +16,17 @@ export default function Nota({ note, setIsEditingNote }: NoteProps) {
     const { modal, openDelete, closeModal } = useAgendaModals()
 
     return (
-        <li className="note bg-white shadow-lg">
+        <li className="note bg-white dark:bg-secondary-dark shadow-lg">
             <div className="w-full flex gap-12">
                 <div className="w-full pr-8 flex items-center gap-8">
                     <h2 className="min-w-44 px-2 font-normal rounded-lg h-fit flex items-center" style={{ backgroundColor: note.color }}>
                         {note.assignature}
                     </h2>
-                    <p className="w-full">{note.title}</p>
+                    <p className="w-full dark:text-white">{note.title}</p>
                 </div>
 
                 <div className="flex items-center gap-12">
-                    <p>{formatDate(note.limitDate)}</p>
+                    <p className="dark:text-white">{formatDate(note.limitDate)}</p>
                     <div className="flex gap-4">
                         <button
                             type="button"

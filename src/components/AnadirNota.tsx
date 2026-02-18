@@ -35,28 +35,28 @@ export default function AñadirNota({ closeModal }: { closeModal: () => void }) 
         <form onSubmit={(e) => handleSubmit(e, formValues)} className="w-1/2">
 
             {/* NOTE BODY */}
-            <div className="relative mb-4 bg-white rounded-[1.25rem] px-3 flex items-center gap-4">
+            <div className="relative mb-4 bg-white dark:bg-secondary-dark rounded-[1.25rem] px-3 flex items-center gap-4">
 
                 {/* NOTE INPUTS */}
                 <div className="py-2 flex flex-col w-full gap-2">
-                    <div className="w-full flex gap-4">
+                    <div className="w-full dark:text-white flex gap-4">
                         <input
                             type="text" name="assignature" value={formValues.assignature}
-                            onChange={handleChange} placeholder="Asignatura" className="bg-neutral-100 w-full px-2 py-1 rounded-xl"
+                            onChange={handleChange} placeholder="Asignatura" className="bg-neutral-100 dark:bg-white/10 w-full px-2 py-1 rounded-xl"
                         />
                         <input
                             type="text" name="title" value={formValues.title} onChange={handleChange}
-                            placeholder="Titulo de la Nota" className="bg-neutral-100 w-full px-2 py-1 rounded-xl"
+                            placeholder="Titulo de la Nota" className="bg-neutral-100 dark:bg-white/10 w-full px-2 py-1 rounded-xl"
                         />
 
                         <input
                             type="date" name="limitDate" value={formValues.limitDate} onChange={handleChange}
-                            min={`${año}-01-01`} max={`${año}-12-31`} className="bg-neutral-100 px-1 rounded-lg"
+                            min={`${año}-01-01`} max={`${año}-12-31`} className="bg-neutral-100 dark:bg-white/10 px-1 rounded-lg"
                         />
                     </div>
                     <textarea
                         name="description" value={formValues.description} onChange={handleChange}
-                        placeholder="Descripción" className="max-h-8 bg-neutral-100 rounded-xl"
+                        placeholder="Descripción" className="max-h-8 bg-neutral-100 dark:bg-white/10 dark:text-white rounded-xl"
                     ></textarea>
                 </div>
 

@@ -16,7 +16,6 @@ html, body, #root {
 body {
   min-height: 100vh;
   width: 100%;
-  background-color: #B5CFF5;
 }
 
 input, textarea:focus, select {
@@ -39,13 +38,23 @@ textarea {
   background: transparent;
 }
 
+/* css variables */
+
+
 /* Tailwind my colors */
 @theme {
   --color-background: #b5cff5;
   --color-secondary: #dbeafe;
   --color-primary: #3686FF;
   --color-accent: #1447e6cc;
+  --color-background-dark: #2e315e;
+  --color-secondary-dark: #5462a1;
+  --color-primary-dark: #1463da;
+  --color-accent-dark: #031c66e0;
 }
+
+/* tailwind class */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: "SNPro";

@@ -23,7 +23,7 @@ export const Agenda = () => {
 
       {modal === null ?
         <button
-          className="cursor-pointer w-48 h-12 text-lg bg-primary font-medium text-white rounded-full text-center shadow-lg duration-200 hover:bg-primary/80"
+          className="cursor-pointer w-48 h-12 text-lg bg-primary dark:bg-primary-dark font-medium text-white rounded-full text-center shadow-lg duration-200 hover:bg-primary/80"
           onClick={openCreate}
         >
           AÑADIR NOTA

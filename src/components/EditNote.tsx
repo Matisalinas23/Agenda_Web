@@ -38,7 +38,7 @@ export default function EditNote({ initialValues, setIsEditingNote, note }: Edit
     }
 
     return (
-        <form onSubmit={handleSubmit} className="note bg-white shadow-lg">
+        <form onSubmit={handleSubmit} className="note bg-white dark:bg-secondary-dark shadow-lg">
             <div className="w-full flex gap-12">
                 <div className="w-full pr-8 flex items-center gap-8">
                     <h2 className="min-w-44 px-2 font-normal rounded-lg h-fit flex items-center" style={{ backgroundColor: note.color }}>{formValues.assignature}</h2>
@@ -48,7 +48,7 @@ export default function EditNote({ initialValues, setIsEditingNote, note }: Edit
                         value={formValues.title}
                         placeholder="Título de la nota"
                         onChange={handleChange}
-                        className="w-full bg-neutral-100 px-1 rounded-lg"
+                        className="w-full bg-neutral-100 dark:bg-white/10 dark:text-white px-1 rounded-lg"
                     />
                 </div>
                 <div className="flex items-center gap-12">
@@ -59,7 +59,7 @@ export default function EditNote({ initialValues, setIsEditingNote, note }: Edit
                         onChange={handleChange}
                         min={`${año}-01-01`}
                         max={`${año}-12-31`}
-                        className="bg-neutral-100 px-1 rounded-lg"
+                        className="bg-neutral-100 px-1 dark:bg-white/10 dark:text-white rounded-lg"
                     />
                     <button
                         type="submit"
@@ -74,7 +74,7 @@ export default function EditNote({ initialValues, setIsEditingNote, note }: Edit
                         name="description"
                         value={formValues.description}
                         onChange={handleChange}
-                        className="w-full bg-neutral-100 rounded-lg px-2"
+                        className="w-full bg-neutral-100 dark:bg-white/10 rounded-lg px-2"
                     />
                 </div>
             </div>
