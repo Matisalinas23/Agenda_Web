@@ -6,10 +6,12 @@ import { ButtonAcceptMedium } from "./Buttons/ButtonAccept"
 import useDate from "../hooks/useDate"
 import { ButtonCancelMedium } from "./Buttons/ButtonCancel"
 import { useNotes } from "../hooks/useNotes"
+import { useAuth } from "../hooks/useAuth"
 
 export default function AñadirNota({ closeModal }: { closeModal: () => void }) {
     const { año } = useDate()
     const { createNote } = useNotes()
+    const { getDecodedId } = useAuth()
     const { formValues, setFormValues, handleChange } = useForm<ICreateNote>({
         title: "",
         assignature: "",
@@ -21,7 +23,13 @@ export default function AñadirNota({ closeModal }: { closeModal: () => void }) 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>, formValues: ICreateNote) => {
         e.preventDefault()
 
-        const isCreatedNote = await createNote(formValues)
+        const userId = getDecodedId()
+
+        if (!userId) {
+            console.log("User id is required")
+            return
+        }
+        const isCreatedNote = await createNote(formValues, userId)
 
         if (!isCreatedNote) {
             alert("Ha ocurrido un error al crear la nota, intentalo denuevo mas tarde")

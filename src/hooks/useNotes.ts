@@ -24,8 +24,8 @@ export const useNotes = () => {
         return true
     }
 
-    const createNote = async (formValues: ICreateNote): Promise<boolean> => {
-        const note: INote = await createNoteHttp(formValues)
+    const createNote = async (formValues: ICreateNote, userId: number): Promise<boolean> => {
+        const note: INote = await createNoteHttp(formValues, userId)
 
         if (!note) return false
 
