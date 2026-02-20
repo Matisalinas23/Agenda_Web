@@ -54,9 +54,8 @@ export const useNotes = () => {
         return true
     }
 
-    const orderNotesByAssignature = async (): Promise<boolean> => {
-
-        const orderedNotes = await orderNotesByAssignatureHttp()
+    const orderNotesByAssignature = async (userId: number): Promise<boolean> => {
+        const orderedNotes = await orderNotesByAssignatureHttp(userId)
 
         if (!orderedNotes) return false
 
@@ -65,8 +64,8 @@ export const useNotes = () => {
         return true
     }
 
-    const orderNotesByDate = async (): Promise<boolean> => {
-        const orderedNotes = await orderNotesByDateHttp()
+    const orderNotesByDate = async (userId: number): Promise<boolean> => {
+        const orderedNotes = await orderNotesByDateHttp(userId)
 
         if (!orderedNotes) return false
 

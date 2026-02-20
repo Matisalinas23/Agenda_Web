@@ -1,19 +1,30 @@
 import { useRef, useState } from "react"
 import { useNotes } from "../hooks/useNotes"
 import useClickFuera from "../hooks/useClickFuera"
+import { useAuth } from "../hooks/useAuth";
 
 export default function OrderNotes() {
   const [isOrder, setIsOrder] = useState<boolean>(false);
   const { orderNotesByAssignature, orderNotesByDate } = useNotes();
   const componentRef = useRef<HTMLDivElement>(null);
+  const { getDecodedId } = useAuth()
+  const userId = getDecodedId()
 
   const handleOrderNotesByAssignature = () => {
-    orderNotesByAssignature()
+    if (!userId) {
+      console.log("User id is required")
+      return
+    }
+    orderNotesByAssignature(userId)
     setIsOrder(false)
   }
 
   const handleOrderNotesByDate = () => {
-    orderNotesByDate()
+    if (!userId) {
+      console.log("User id is required")
+      return
+    }
+    orderNotesByDate(userId)
     setIsOrder(false)
   }
 

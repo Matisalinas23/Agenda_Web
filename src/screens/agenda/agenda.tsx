@@ -4,14 +4,24 @@ import useAgendaModals from "../../hooks/useAgendaModals";
 import useNoteStore from "../../store/useNoteStore";
 import { useNotes } from "../../hooks/useNotes";
 import AñadirNota from "../../components/AnadirNota";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Agenda = () => {
   const notes = useNoteStore(state => state.notes)
   const { modal, openCreate, closeModal } = useAgendaModals()
   const { orderNotesByDate } = useNotes()
+  const { getDecodedId } = useAuth()
 
   useEffect(() => {
-    orderNotesByDate()
+    const userId = getDecodedId()
+
+    if(!userId) {
+      console.log("User id is required")
+      return
+    }
+
+    orderNotesByDate(userId)
+
     if (!notes) {
       console.log("Error fetching notes")
     }

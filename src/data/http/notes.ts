@@ -57,18 +57,18 @@ export const deleteNoteHttp = async (id: number): Promise<INote> => {
     }
 }
 
-export const orderNotesByAssignatureHttp = async (): Promise<INote[]> => {
+export const orderNotesByAssignatureHttp = async (userId: number): Promise<INote[]> => {
     try {
-        const res = await api.get(`${notesUrl}/orderByAssignature`)
+        const res = await api.get(`${notesUrl}/${userId}/orderByAssignature`)
         return res.data
     } catch (error) {
         console.log(error)
     }
 }
 
-export const orderNotesByDateHttp = async (): Promise<INote[]> => {
+export const orderNotesByDateHttp = async (userId: number): Promise<INote[]> => {
     try {
-        const res = await api.get(`${notesUrl}/orderByDate`)
+        const res = await api.get(`${notesUrl}/${userId}/orderByDate`)
         return res.data
     } catch (error) {
         console.log(error)
