@@ -1,7 +1,7 @@
 import { type FormEvent } from "react"
 import useForm from "../hooks/useForm" 
 import { useAuth } from "../hooks/useAuth"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { ButtonRegister as ButtonLogin } from "../components/Buttons/ButtonAccept"
 import { RegisterLoginUserIcon } from "../components/Icons/RegisterLoginUserIcon"
 
@@ -12,7 +12,6 @@ export default function Login() {
     })
 
     const { loginUser } = useAuth()
-    const navigate = useNavigate()
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
