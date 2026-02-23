@@ -2,6 +2,7 @@ import { useRef, useState, type ClipboardEvent, type KeyboardEvent } from "react
 import api from "../data/http/axios";
 import { ButtonAcceptMedium } from "../components/Buttons/ButtonAccept";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function AccountVerification() {
   const CODE_LENGTH = 6;
@@ -53,8 +54,9 @@ export default function AccountVerification() {
 
   const handleConfirmToken = async () => {
     const verificationToken = localStorage.getItem("verificationToken");
+    const API_URL = import.meta.env.VITE_LOCAL_API_URL
 
-    const res = await api.post(`/auth/verify-email?token=${verificationToken}`);
+    const res = await axios.post(`${API_URL}/auth/verify-email?token=${verificationToken}`);
 
     if (res.status !== 200) throw new Error("Verification token is invalid")
 

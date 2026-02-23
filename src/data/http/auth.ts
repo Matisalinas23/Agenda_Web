@@ -1,3 +1,4 @@
+import axios from "axios"
 import type { IPayloadAuth } from "../../interfaces/auth.interface"
 import type { ILoginUser, IRegisterUser, IUser } from "../../interfaces/user.interface" 
 import api from "./axios"
@@ -20,7 +21,7 @@ export const registerHttp = async (registerValues: IRegisterUser): Promise<IRegi
 
 export const loginHttp = async (loginValues: ILoginUser): Promise<string> => {
     try {
-        const res = await api.post(`${authUrl}/login`, loginValues)
+        const res = await axios.post(`${authUrl}/login`, loginValues)
         return res.data
     } catch (error) {
         console.error(error)
