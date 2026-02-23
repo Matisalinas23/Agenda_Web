@@ -17,14 +17,7 @@ export default function Login() {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         
-        const isLogin = await loginUser(formValues)
-        
-        if (!isLogin) {
-            alert("hubo un pproblema al iniciar sesión, por favor intentelo denuevo mas tarde")
-            return
-        }
-
-        navigate("/")
+        await loginUser(formValues)
     }
 
     return (

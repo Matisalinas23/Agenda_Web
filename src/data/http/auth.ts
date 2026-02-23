@@ -23,7 +23,8 @@ export const loginHttp = async (loginValues: ILoginUser): Promise<string> => {
         const res = await api.post(`${authUrl}/login`, loginValues)
         return res.data
     } catch (error) {
-        console.error(error.message)
+        console.error(error)
+        throw error
     }
 }
 

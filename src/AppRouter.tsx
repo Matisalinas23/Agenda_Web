@@ -4,6 +4,7 @@ import Login from './screens/login'
 import MainLayout from './components/layouts/MainLayout'
 import Register from './screens/register'
 import { PrivateRoute } from './components/layouts/PrivateRoutes'
+import AccountVerification from './screens/accountVerification'
 
 
 export default function AppRouter() {
@@ -17,6 +18,7 @@ export default function AppRouter() {
 
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
+      <Route path='/register/verification' element={<AccountVerification />}/>
     </Routes>
   )
 }
