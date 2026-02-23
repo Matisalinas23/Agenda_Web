@@ -1,5 +1,4 @@
 import { useRef, useState, type ClipboardEvent, type KeyboardEvent } from "react";
-import api from "../data/http/axios";
 import { ButtonAcceptMedium } from "../components/Buttons/ButtonAccept";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
