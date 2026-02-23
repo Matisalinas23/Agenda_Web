@@ -4,12 +4,17 @@ import api from "./axios"
 
 const authUrl = import.meta.env.VITE_LOCAL_API_URL + "/auth"
 
-export const registerHttp = async (registerValues: IRegisterUser): Promise<IUser> => {
+export interface IRegister {
+    user: IUser
+    verificationToken: string
+}
+export const registerHttp = async (registerValues: IRegisterUser): Promise<IRegister> => {
     try {
         const res = await api.post(`${authUrl}/register`, registerValues)
         return res.data
     } catch (error) {
         console.error(error)
+        throw error
     }
 }
 
