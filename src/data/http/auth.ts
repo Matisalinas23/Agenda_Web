@@ -47,7 +47,7 @@ export const verifyAccountHttp = async (verificationToken: string): Promise<stri
 
         if (res.status !== 200) throw new Error("Verification token is invalid")
         
-        return res.data;
+        return res.data.message;
     } catch (error) {
         console.error(error)
         throw error
