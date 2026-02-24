@@ -17,14 +17,13 @@ export default function Register() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { user, verificationToken } = await registerUser(formValues)
+    const user = await registerUser(formValues)
 
-    if (!user || !verificationToken) {
+    if (!user) {
       alert("No se pudo completar el registro\nPor favor, intentalo de nuevo mas tarde.")
       return
     }
 
-    localStorage.setItem("verificationToken", verificationToken)
     navigate("/register/verification")
   }
 

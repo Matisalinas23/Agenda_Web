@@ -11,7 +11,7 @@ export interface IRegister {
     verificationToken: string
 }
 
-export const registerHttp = async (registerValues: IRegisterUser): Promise<IRegister> => {
+export const registerHttp = async (registerValues: IRegisterUser): Promise<IUser> => {
     try {
         const res = await api.post(`${authUrl}/register`, registerValues)
         return res.data
@@ -43,13 +43,10 @@ export const authMeHttp = async (): Promise<IPayloadAuth> => {
 
 export const verifyAccountHttp = async (verificationToken: string): Promise<string> => {
     try {
-        const res = await axios.post(`${API_URL}/auth/verify-email?token=${verificationToken}`);
-
-        if (res.status !== 200) throw new Error("Verification token is invalid")
-        
+        const res = await axios.post(`${API_URL}/auth/verify-email?token=${verificationToken}`);        
         return res.data.message;
     } catch (error) {
-        console.error(error)
+        console.error(error.message, `\n\n${error.response.data.message}`)
         throw error
     }
 }

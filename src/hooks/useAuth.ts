@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode"
-import { authMeHttp, loginHttp, registerHttp, type IRegister } from "../data/http/auth"
-import type { ILoginUser, IRegisterUser } from "../interfaces/user.interface"
+import { authMeHttp, loginHttp, registerHttp } from "../data/http/auth"
+import type { ILoginUser, IRegisterUser, IUser } from "../interfaces/user.interface"
 import useAuthStore from "../store/useAuthStore"
 import type { IPayloadAuth } from "../interfaces/auth.interface"
 import { useNavigate } from "react-router-dom"
@@ -9,9 +9,8 @@ export const useAuth = () => {
     const { login, logout, setPayload } = useAuthStore(state => state)
     const navigate = useNavigate()
 
-    const registerUser = async (registerValues: IRegisterUser): Promise<IRegister> => {
+    const registerUser = async (registerValues: IRegisterUser): Promise<IUser> => {
         const data = await registerHttp(registerValues)
-
         return data
     }
 

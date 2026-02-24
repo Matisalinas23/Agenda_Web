@@ -1,6 +1,5 @@
 import { ButtonAcceptMedium } from "../components/Buttons/ButtonAccept";
 import { useNavigate } from "react-router-dom";
-
 import useVerificationCode from "../hooks/useVerificationCode";
 import { verifyAccountHttp } from "../data/http/auth";
 import { VerificationCodeInput } from "../components/VerificationCodeInput";
@@ -13,16 +12,9 @@ export default function AccountVerification() {
   const handleSubmitVerification = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const verificationToken = localStorage.getItem("verificationToken");
-    if (!verificationToken) {
-      console.log("Verification token is required in local storage")
-      return
-    }
-
     try {
-      const message = await verifyAccountHttp(verificationToken!);
+      const message = await verifyAccountHttp(code.join(""));
       alert(message);
-      localStorage.removeItem("verificationToken");
       navigate("/login");
     } catch (error) {
       alert("Codigo invalido o expierado\nPor favor, solicita un nuevo codigo de verificación.");
