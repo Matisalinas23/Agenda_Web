@@ -20,7 +20,7 @@ export default function Register() {
     const { user, verificationToken } = await registerUser(formValues)
 
     if (!user || !verificationToken) {
-      alert("No se pudocompletar el registro\nPor favor, intentalo de nuevo mas tarde.")
+      alert("No se pudo completar el registro\nPor favor, intentalo de nuevo mas tarde.")
       return
     }
 
