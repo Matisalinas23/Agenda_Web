@@ -6,8 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { initTheme } from './utils/theme.ts'
 
 initTheme()
-const html = document.documentElement
-console.log(html.classList.contains("dark"))
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

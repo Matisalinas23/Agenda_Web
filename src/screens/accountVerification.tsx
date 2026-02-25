@@ -26,16 +26,20 @@ export default function AccountVerification() {
       <form onSubmit={handleSubmitVerification} className="w-fit py-16 px-24 rounded-3xl bg-secondary flex flex-col justify-center items-center gap-8">
         <h2 className="text-2xl text-primary dark:text-primary-dark font-medium">Introduce el código de verificación</h2>
         <div className="w-full my-8 flex justify-center gap-2">
-          {code.map((value, index) => (
-            <VerificationCodeInput
-              index={index}
-              value={value}
-              handleChangeVerification={handleChangeVerification}
-              handleKeyDown={handleKeyDown}
-              handlePaste={handlePaste}
-              inputsRef={inputsRef}
-            />
-          ))}
+          {code.map((value, index) => {
+            const key = `verification-code-${index}`;
+            return (
+              <VerificationCodeInput
+                key={key}
+                index={index}
+                value={value}
+                handleChangeVerification={handleChangeVerification}
+                handleKeyDown={handleKeyDown}
+                handlePaste={handlePaste}
+                inputsRef={inputsRef}
+              />
+            )
+          })}
         </div>
 
         <ButtonAcceptMedium type="submit" text="Confirmar" isDisabled={!code.every(Boolean)} />

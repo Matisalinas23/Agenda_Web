@@ -18,7 +18,6 @@ export const VerificationCodeInput = ({
     inputsRef
 }: VerificationCodeInputProps) => (
     <input
-        key={index}
         ref={(el) => { inputsRef.current[index] = el }}
         type="text"
         inputMode="numeric"

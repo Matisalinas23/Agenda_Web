@@ -54,6 +54,7 @@ export default function SeleccionarColor({ setFormValues }: SeleccionarColorProp
                 <div className="absolute mt-2 right-0 top-22 z-10 h-26 w-fit p-2 rounded-xl bg-white">
                     <ul className="h-full overflow-y-auto flex flex-col gap-2">{colors.map(c => (
                         <SelectColorItem
+                            key={c.code}
                             setButtonColor={setButtonColor}
                             setFormValues={setFormValues}
                             setOpenSelectColor={setOpenSelectColor}
