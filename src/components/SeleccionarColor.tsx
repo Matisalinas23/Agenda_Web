@@ -1,8 +1,14 @@
 import { useRef, useState, type Dispatch, type MouseEvent, type SetStateAction } from "react"
 import type { ICreateNote } from "../interfaces/notes"; 
 import useClickFuera from "../hooks/useClickFuera";
+import SelectColorItem from "./SelectColorItem";
 
-const colors: { code: string, name: string }[] = [
+export interface IColor {
+    code: string,
+    name: string,
+}
+
+const colors: IColor[] = [
     { code: "#FF8989", name: "Rojo" },
     { code: "#FFAA74", name: "Naranja intenso" },
     { code: "#FFCF81", name: "Naranja" },
@@ -27,16 +33,6 @@ export default function SeleccionarColor({ setFormValues }: SeleccionarColorProp
     const [openSelectColor, setOpenSelectColor] = useState<boolean>(false);
     const componentRef = useRef<HTMLDivElement>(null);
 
-    const handleSelectColor = (col: { code: string, name: string }) => {
-        setButtonColor(col.code)
-        setFormValues(prev => ({
-            ...prev,
-            color: col.code
-        }))
-
-        setOpenSelectColor(false)
-    }
-
     const toggleSelectColor = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
         setOpenSelectColor(!openSelectColor)
@@ -57,14 +53,12 @@ export default function SeleccionarColor({ setFormValues }: SeleccionarColorProp
             {openSelectColor &&
                 <div className="absolute mt-2 right-0 top-22 z-10 h-26 w-fit p-2 rounded-xl bg-white">
                     <ul className="h-full overflow-y-auto flex flex-col gap-2">{colors.map(c => (
-                        <li
-                            key={c.name}
-                            onClick={() => handleSelectColor(c)}
-                            className="px-2 mr-1 rounded-lg flex items-center gap-2 cursor-pointer hover:bg-neutral-100"
-                        >
-                            <div className="h-3 w-3 rounded-full" style={{backgroundColor: c.code}}></div>
-                            {c.name}
-                        </li>
+                        <SelectColorItem
+                            setButtonColor={setButtonColor}
+                            setFormValues={setFormValues}
+                            setOpenSelectColor={setOpenSelectColor}
+                            color={c}
+                        />
                     ))}</ul>
                 </div>
             }
