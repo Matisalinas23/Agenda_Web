@@ -12,6 +12,11 @@ export default function Register() {
     email: "",
     password: ""
   })
+  const inputNames = [
+    "username",
+    "email",
+    "password",
+  ]
 
   const { registerUser } = useAuth()
 
@@ -31,17 +36,17 @@ export default function Register() {
     <div className="h-full flex bg-background dark:bg-background-dark items-center justify-center">
       <form onSubmit={handleSubmit} className="px-12 py-12 w-120 bg-secondary dark:bg-secondary-dark rounded-3xl flex flex-col items-center justify-center gap-12">
           <h2 className="text-accent dark:text-accent-dark font-bold text-3xl">Registrarse</h2>
-
           <div className="w-full flex flex-col gap-4">
-            <input type="text" className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="username"
-              onChange={handleChange} value={formValues.username} placeholder="Nombre de usuario"
-            />
-            <input type="text" className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="email"
-              onChange={handleChange} value={formValues.email} placeholder="Correo electrónico"
-            />
-            <input type="password" className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1" name="password"
-              onChange={handleChange} value={formValues.password} placeholder="Contraseña"
-            />
+            {inputNames.map(name => (
+              <input key={name}
+                type={name === "password" ? "password" : "text"}
+                name={name}
+                placeholder={name === "username" ? "Nombre de usuario" : name === "email" ? "Correo electrónico" : "Contraseña"}
+                className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1"
+                onChange={handleChange}
+                value={formValues[name as keyof IRegisterUser]}
+              />
+            ))}
           </div>
           <ButtonRegister type="submit" text="Crear Cuenta" />
         </form>
