@@ -1,6 +1,6 @@
 import useDate from "../../hooks/useDate";
 import { useNotes } from "../../hooks/useNotes";
-import type { INote } from "../../interfaces/notes"; 
+import type { INote } from "../../interfaces/notes.interface"; 
 
 export default function DeleteNote({ note, closeModal }: { note: INote, closeModal: () => void }) {
     const { removeNote } = useNotes()

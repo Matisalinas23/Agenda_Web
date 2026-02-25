@@ -1,4 +1,4 @@
-import type { ICreateNote, INote } from "../interfaces/notes";
+import type { ICreateNote, INote } from "../interfaces/notes.interface";
 import FilterNotes from "./OrderNotes";
 import Nota from "./Nota";
 import { useState } from "react";

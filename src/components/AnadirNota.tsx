@@ -1,6 +1,6 @@
 import { type FormEvent } from "react"
 import useForm from "../hooks/useForm"
-import type { ICreateNote } from "../interfaces/notes"
+import type { ICreateNote } from "../interfaces/notes.interface"
 import SeleccionarColor from "./SeleccionarColor"
 import { ButtonAcceptMedium } from "./Buttons/ButtonAccept"
 import useDate from "../hooks/useDate"

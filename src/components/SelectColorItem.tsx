@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react"
-import type { ICreateNote } from "../interfaces/notes"
+import type { ICreateNote } from "../interfaces/notes.interface"
 import type { IColor } from "./SeleccionarColor"
 
 type SelectColorItemProps = {

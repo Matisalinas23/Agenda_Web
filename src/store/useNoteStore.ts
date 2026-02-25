@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { INote } from "../interfaces/notes"; 
+import type { INote } from "../interfaces/notes.interface"; 
 
 interface INoteStore {
     notes: INote[]

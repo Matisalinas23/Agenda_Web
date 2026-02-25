@@ -1,5 +1,5 @@
 import { useRef, useState, type Dispatch, type MouseEvent, type SetStateAction } from "react"
-import type { ICreateNote } from "../interfaces/notes"; 
+import type { ICreateNote } from "../interfaces/notes.interface"; 
 import useClickFuera from "../hooks/useClickFuera";
 import SelectColorItem from "./SelectColorItem";
 

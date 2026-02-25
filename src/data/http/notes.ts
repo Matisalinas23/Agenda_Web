@@ -1,4 +1,4 @@
-import type { ICreateNote, INote } from "../../interfaces/notes"
+import type { ICreateNote, INote } from "../../interfaces/notes.interface"
 import api from "./axios"
 
 const notesUrl = "/notes"

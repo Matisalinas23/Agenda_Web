@@ -1,6 +1,6 @@
 import useNoteStore from "../store/useNoteStore"
 import { createNoteHttp, deleteNoteHttp, getAllNotesHttp, orderNotesByAssignatureHttp, orderNotesByDateHttp, updateNoteHttp } from "../data/http/notes"
-import type { ICreateNote, INote } from "../interfaces/notes"
+import type { ICreateNote, INote } from "../interfaces/notes.interface"
 
 
 

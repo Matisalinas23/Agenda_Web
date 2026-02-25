@@ -1,6 +1,6 @@
 import type { FormEvent } from "react"
 import useForm from "../hooks/useForm"
-import type { ICreateNote, INote } from "../interfaces/notes"
+import type { ICreateNote, INote } from "../interfaces/notes.interface"
 import { useNotes } from "../hooks/useNotes"
 import useDate from "../hooks/useDate"
 import { AcceptIcon } from "./Icons/AcceptIcon"

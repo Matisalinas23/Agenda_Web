@@ -1,4 +1,4 @@
-import type { INote } from "./notes"
+import type { INote } from "./notes.interface"
 
 export interface ILoginUser {
     email: string

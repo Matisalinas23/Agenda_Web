@@ -1,4 +1,4 @@
-import type { INote } from "../interfaces/notes"; 
+import type { INote } from "../interfaces/notes.interface"; 
 import useAgendaModals from "../hooks/useAgendaModals";
 import DeleteNote from "./modals/DeleteNote";
 import useDate from "../hooks/useDate";
