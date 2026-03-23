@@ -29,7 +29,7 @@ export default function Register() {
       return
     }
 
-    navigate("/register/verification")
+    navigate("/login")
   }
 
   return (
