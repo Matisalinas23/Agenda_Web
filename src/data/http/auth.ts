@@ -1,4 +1,3 @@
-import axios from "axios"
 import type { IPayloadAuth } from "../../interfaces/auth.interface"
 import type { ILoginUser, IRegisterUser, IUser } from "../../interfaces/user.interface" 
 import api from "./axios"
@@ -23,7 +22,7 @@ export const registerHttp = async (registerValues: IRegisterUser): Promise<IUser
 
 export const loginHttp = async (loginValues: ILoginUser): Promise<string> => {
     try {
-        const res = await axios.post(`${authUrl}/login`, loginValues)
+        const res = await api.post(`${authUrl}/login`, loginValues)
         return res.data
     } catch (error) {
         console.error(error)
@@ -43,7 +42,7 @@ export const authMeHttp = async (): Promise<IPayloadAuth> => {
 
 export const verifyAccountHttp = async (verificationToken: string): Promise<string> => {
     try {
-        const res = await axios.post(`${API_URL}/auth/verify-email?token=${verificationToken}`);        
+        const res = await api.post(`${API_URL}/auth/verify-email?token=${verificationToken}`);        
         return res.data.message;
     } catch (error) {
         console.error(error.message, `\n\n${error.response.data.message}`)
