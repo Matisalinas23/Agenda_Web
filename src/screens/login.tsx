@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth"
 import { Link } from "react-router-dom"
 import { ButtonRegister as ButtonLogin } from "../components/Buttons/ButtonAccept"
 import { RegisterLoginUserIcon } from "../components/Icons/RegisterLoginUserIcon"
+import { GoogleIcon } from "../components/Icons/GoogleIcon"
 
 export default function Login() {
     const { formValues, handleChange } = useForm({
@@ -11,7 +12,7 @@ export default function Login() {
         password: ""
     })
 
-    const { loginUser } = useAuth()
+    const { loginUser, loginWithGoogle } = useAuth()
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -38,7 +39,18 @@ export default function Login() {
                     />
                 </div>
 
-                <ButtonLogin type="submit" text="Iniciar sesión" /> {/* This button is a ButtonRegister component used as a ButtonLogin */}
+                <div className="flex flex-col gap-4 w-full">
+                    <ButtonLogin type="submit" text="Iniciar sesión" />
+                    
+                    <button 
+                        type="button" 
+                        onClick={loginWithGoogle}
+                        className="flex items-center justify-center gap-3 bg-white text-gray-700 font-semibold py-2 px-4 rounded-xl border border-gray-300 hover:bg-gray-50 transition-colors w-full"
+                    >
+                        <GoogleIcon />
+                        Google
+                    </button>
+                </div>
             </form>
 
             <div className="flex gap-2 dark:text-white">
