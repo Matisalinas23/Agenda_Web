@@ -11,11 +11,26 @@ interface IUseAuthStore {
 }
 
 const useAuthStore = create<IUseAuthStore>((set) => {
-    const token = localStorage.getItem("token")
+    // Capturar token del hash de forma síncrona
+    let initialToken = localStorage.getItem("token") || "";
+    const hash = window.location.hash;
+
+    if (hash && hash.includes("token=")) {
+        // El hash puede venir como #token=... o #/token=... dependiendo del router
+        const tokenMatch = hash.match(/token=([^&]+)/);
+        const tokenFromHash = tokenMatch ? tokenMatch[1] : null;
+
+        if (tokenFromHash) {
+            localStorage.setItem("token", tokenFromHash);
+            initialToken = tokenFromHash;
+            // Limpiar la URL después de capturar
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    }
 
     return {
-        token,
-        isToken: !!token,
+        token: initialToken,
+        isToken: !!initialToken,
         payload: null,
         login: (newToken: string) => {
             set({ token: newToken, isToken: true })

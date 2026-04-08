@@ -49,3 +49,13 @@ export const verifyAccountHttp = async (verificationToken: string): Promise<stri
         throw error
     }
 }
+
+export const getGoogleAuthUrlHttp = async (): Promise<{ url: string }> => {
+    try {
+        const res = await api.get(`${authUrl}/google`);
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}

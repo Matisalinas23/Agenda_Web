@@ -15,7 +15,7 @@ function App() {
     if (token) {
       authMe()
     }
-  }, [])
+  }, [token])
 
   return (
       <AppRouter />

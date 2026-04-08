@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode"
-import { authMeHttp, loginHttp, registerHttp } from "../data/http/auth"
+import { authMeHttp, getGoogleAuthUrlHttp, loginHttp, registerHttp } from "../data/http/auth"
 import type { ILoginUser, IRegisterUser, IUser } from "../interfaces/user.interface"
 import useAuthStore from "../store/useAuthStore"
 import type { IPayloadAuth } from "../interfaces/auth.interface"
@@ -57,11 +57,21 @@ export const useAuth = () => {
         return decoded.userId
     }
 
+    const loginWithGoogle = async () => {
+        try {
+            const { url } = await getGoogleAuthUrlHttp()
+            window.location.href = url
+        } catch (error) {
+            alert("No se pudo iniciar el inicio de sesión con Google")
+        }
+    }
+
     return {
         registerUser,
         loginUser,
         logoutUser,
         authMe,
         getDecodedId,
+        loginWithGoogle,
     }
 }
