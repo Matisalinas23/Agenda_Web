@@ -36,7 +36,7 @@ const useAuthStore = create<IUseAuthStore>((set) => {
             set({ token: newToken, isToken: true })
         },
         logout: () => {
-            set({ token: null, isToken: false })
+            set({ token: null, isToken: false, payload: null })
         },
         setPayload: (payload: IPayloadAuth) => {
             set({ payload })

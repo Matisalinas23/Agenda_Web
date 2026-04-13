@@ -5,6 +5,7 @@ import MainLayout from './components/layouts/MainLayout'
 import Register from './screens/register'
 import { PrivateRoute } from './components/layouts/PrivateRoutes'
 import AccountVerification from './screens/accountVerification'
+import Account from './screens/account'
 
 
 export default function AppRouter() {
@@ -13,6 +14,7 @@ export default function AppRouter() {
       <Route element={<PrivateRoute />}>
         <Route element={<MainLayout />}>
           <Route path='/' element={<Agenda />}/>
+          <Route path='/account' element={<Account />}/>
         </Route>
       </Route>
 

@@ -6,8 +6,8 @@ import useAuthStore from './store/useAuthStore'
 import { useNotificationTrigger } from './hooks/useNotificationTrigger'
 
 function App() {
-  const { authMe } = useAuth()
-  const { token } = useAuthStore(state => state)
+  const authMe = useAuth().authMe
+  const token = useAuthStore(state => state.token)
   
   useNotificationTrigger()
 

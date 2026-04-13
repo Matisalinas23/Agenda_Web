@@ -45,10 +45,12 @@ export default function Login() {
                     <button 
                         type="button" 
                         onClick={loginWithGoogle}
-                        className="flex items-center justify-center gap-3 bg-white text-gray-700 font-semibold py-2 px-4 rounded-xl border border-gray-300 hover:bg-gray-50 transition-colors w-full"
+                        className="cursor-pointer flex items-center justify-center gap-3 bg-white text-gray-700 font-semibold py-2 px-4 rounded-xl border border-gray-300 cursor-pointerhover:bg-gray-50 transition-colors w-full"
                     >
-                        <GoogleIcon />
-                        Google
+                        <div className="h-6">
+                            <GoogleIcon />
+                        </div>
+                        Inicia con Google
                     </button>
                 </div>
             </form>

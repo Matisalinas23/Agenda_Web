@@ -7,37 +7,8 @@ import { NotificationsIcon } from "./Icons/NotificationsIcon"
 import { LogOutIcon } from "./Icons/LogOutIcon"
 import { toggleTheme } from "../utils/theme"
 import { NotificationsOffIcon } from "./Icons/NotificationsOffIcon"
-import { ButtonAcceptSmall } from "./Buttons/ButtonAccept"
-import { ButtonCancelSmall } from "./Buttons/ButtonCancel"
-
-const ModalToggleNotifications = ({ setIsModalNotifications, isNotifications, setIsNotifications }) => {
-    return (
-        <div className=" bg-secondary-dark max-w-100 h-fit rounded-2xl p-8 flex flex-col items-center justify-center gap-12">
-            <p className="text-xl text-center">{isNotifications === "true"
-                ? "¿ Estas seguro que deseas desactivar las notificaciones ?"
-                : "¿ Estas seguro que deseas activar las notificaciones ?"
-            }</p>
-            <div className="w-full flex justify-between">
-                <ButtonCancelSmall
-                    onClick={() => {
-                        setIsModalNotifications(false)
-                    }}
-                    text="No"
-                />
-                <ButtonAcceptSmall
-                    onClick={() => {
-                        const isNotis = isNotifications === "true" ? "false" : "true"
-                        localStorage.setItem("notifications", isNotis)
-                        setIsNotifications(isNotis)
-                        setIsModalNotifications(false)
-                    }}
-                    type="button"
-                    text="Si"
-                />
-            </div>
-        </div>
-    )
-}
+import AccountIcon from "./Icons/AccountIcon"
+import { ModalToggleNotifications } from "./modals/ToggleNotificationIcon"
 
 export default function NavbarDeployable() {
     const { logoutUser } = useAuth()
@@ -63,31 +34,36 @@ export default function NavbarDeployable() {
             <div className={`navbarSideSection ${isOpenDepoyable ? "open" : ""}`}>
                 <ul className="navbarDeployable">
                     <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
-                        <button
-                            className="h-6 cursor-pointer flex items-center gap-4"
-                            onClick={toggleTheme}
-                        >
+                        <a href="/account" className="h-6 cursor-pointer flex items-center gap-4">
+                            <AccountIcon />
+                            Cuenta
+                        </a>
+                    </li>
+                    <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
+                        <button className="h-6 cursor-pointer flex items-center gap-4" onClick={toggleTheme}>
                             <DarkModeIcon />
                             Tema
                         </button>
                     </li>
                     <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
-                        <button className="h-6 cursor-pointer" onClick={() => { setIsModalNotifications(true) }}>
+                        <button className="h-6 cursor-pointer flex items-center gap-4" onClick={() => { setIsModalNotifications(true) }}>
                             {isNotification === "true"
-                                ? <div className="flex items-center gap-4">
+                                ? <>
                                     <NotificationsOffIcon />
                                     <p>Desactiavar</p>
-                                </div>
-                                : <div className="flex items-center gap-4">
+                                </>
+                                : <>
                                     <NotificationsIcon />
                                     <p>Activar</p>
-                                </div>
+                                </>
                             }
                         </button>
                     </li>
                     <li className="min-w-38 px-2 flex justify-start rounded-xl hover:bg-blue-400">
-                        <button className="h-6 cursor-pointe flex items-center gap-4" onClick={logoutUser}>
-                            <LogOutIcon />
+                        <button className="h-6 cursor-pointer flex items-center gap-4" onClick={logoutUser}>
+                            <div className="h-6">
+                                <LogOutIcon />
+                            </div>
                             Cerrar Sesión
                         </button>
                     </li>
