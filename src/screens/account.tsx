@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
-import AccountIcon from "../components/Icons/AccountIcon";
-import { NotificationsIcon } from "../components/Icons/NotificationsIcon";
-import { LogOutIcon } from "../components/Icons/LogOutIcon";
 
 export default function Account() {
     const navigate = useNavigate();
@@ -19,158 +16,146 @@ export default function Account() {
         }
     };
 
-    const handleGoBack = () => {
-        navigate("/");
+    // Helper to render the avatar safely
+    const renderAvatar = (size: string) => {
+        if (payload?.profileImage) {
+            return (
+                <img 
+                    src={payload.profileImage} 
+                    alt="User profile avatar" 
+                    className={`${size} rounded-full object-cover border-2 border-primary/20 shadow-inner`}
+                    referrerPolicy="no-referrer"
+                />
+            );
+        }
+        return (
+            <div className={`${size} rounded-full border-2 border-primary/20 bg-primary/10 flex items-center justify-center text-primary`}>
+                <span className="material-symbols-outlined !text-4xl text-primary/40">person</span>
+            </div>
+        );
     };
 
-    const navItems = [
-        { id: "personal-info", label: "Información Personal", icon: <AccountIcon /> },
-        { id: "security", label: "Seguridad", icon: <LogOutIcon /> },
-        { id: "preferences", label: "Preferencias y Datos", icon: <NotificationsIcon /> },
-    ];
+    if (!payload) return null;
 
     return (
-        <div className="p-6 md:p-12 max-w-6xl mx-auto flex flex-col gap-6 scroll-smooth">
-            {/* Header / Back Button */}
-            <header className="flex items-center gap-4">
-                <button
-                    onClick={handleGoBack}
-                    className="group text-primary hover:text-primary-dark font-medium flex items-center gap-2 transition-all underline-offset-4 hover:underline"
-                >
-                    <span className="group-hover:-translate-x-1 transition-transform">←</span> Volver a la Agenda
-                </button>
+        <div className="max-w-4xl mx-auto space-y-10">
+            {/* Header */}
+            <header className="flex flex-col">
+                <span className="text-[0.6rem] font-bold tracking-[0.2em] text-primary uppercase mb-1">AJUSTES DE CUENTA</span>
+                <h1 className="text-4xl font-black text-gray-800 dark:text-white tracking-tight">Mi Perfil</h1>
             </header>
 
-            <h1 className="text-4xl font-bold text-accent dark:text-accent-dark mb-2">Configuración</h1>
-
-            <div className="flex flex-col md:flex-row gap-10">
-                {/* STICKY SIDEBAR */}
-                <aside className="md:w-1/3 lg:w-1/4">
-                    <div className="sticky top-10 flex flex-col gap-8">
-                        {/* Profile Brief */}
-                        <div className="bg-secondary dark:bg-secondary-dark p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center text-center gap-4">
-                            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center overflow-hidden border-2 border-primary">
-                                {payload?.profileImage ? (
-                                    <img src={payload.profileImage} alt="Profile" className="w-full h-full object-cover" />
-                                ) : (
-                                    <AccountIcon />
-                                )}
+            {/* Bento Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* Profile Info Card */}
+                <section id="personal-info"
+                    className="md:col-span-2 bg-white dark:bg-secondary-dark/20 rounded-2xl p-8 shadow-sm border border-primary/5">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+                        <div className="relative group">
+                            <div className="w-32 h-32">
+                                {renderAvatar("w-32 h-32")}
                             </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-gray-800 dark:text-white truncate max-w-[180px]">
-                                    {payload?.username || "Usuario"}
-                                </h2>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[180px]">
-                                    {payload?.email}
-                                </p>
+                            <div
+                                className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                <span className="text-white text-xs font-bold">Editar</span>
                             </div>
                         </div>
 
-                        {/* Navigation Menu */}
-                        <nav className="bg-secondary p-4 dark:bg-secondary-dark rounded-2xl flex flex-col gap-2">
-                            {navItems.map((item) => (
-                                <a
-                                    key={item.id}
-                                    href={`#${item.id}`}
-                                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-primary/10 hover:text-primary transition-all font-medium border border-transparent hover:border-primary/20"
-                                >
-                                    <span className="w-5 h-5 opacity-70 transition-transform group-hover:scale-110">
-                                        {item.icon}
-                                    </span>
-                                    {item.label}
-                                </a>
-                            ))}
-                        </nav>
+                        <div className="flex-1 w-full space-y-6">
+                            <div className="text-center sm:text-left">
+                                <h2 className="text-2xl font-bold dark:text-white mb-1">{payload.username}</h2>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    {payload.email}
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label className="text-[0.6rem] font-bold text-primary uppercase tracking-widest">Nombre de Usuario</label>
+                                    <p className="text-gray-700 bg-gray-100 dark:bg-background-dark rounded-lg py-2 px-4 dark:text-white font-medium">{payload.username}</p>
+                                </div>
+                                <div className="opacity-80">
+                                    <label className="text-[0.6rem] font-bold text-primary uppercase tracking-widest">Correo Electrónico</label>
+                                    <p className="text-gray-700 bg-gray-100 dark:bg-background-dark rounded-lg py-2 px-4 dark:text-white font-medium">{payload.email}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </aside>
+                </section>
 
-                {/* MAIN UNIFIED CONTENT */}
-                <main className="flex-1">
-                    <div className="bg-secondary dark:bg-secondary-dark rounded-2xl shadow-xl overflow-hidden border border-accent/5">
-
-                        {/* Section: Personal Information */}
-                        <section id="personal-info" className="p-8 border-b border-accent/10 scroll-mt-10">
-                            <h2 className="text-2xl font-bold text-accent dark:text-accent-dark mb-6 flex items-center gap-3">
-                                <div className="w-7 h-7">
-                                    <AccountIcon />
-                                </div> 
-                                Información Personal
-                            </h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                                <div className="flex flex-col gap-1">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Nombre de Usuario</label>
-                                    <p className="text-lg text-gray-800 dark:text-white font-medium">{payload?.username || "No disponible"}</p>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Correo Electrónico</label>
-                                    <p className="text-lg text-gray-800 dark:text-white font-medium">{payload?.email || "No disponible"}</p>
-                                </div>
+                {/* Preferences Card */}
+                <section id="preferences" className="bg-secondary/40 dark:bg-secondary-dark/50 rounded-3xl p-8 flex flex-col justify-between shadow-sm border border-primary/5">
+                    <div className="space-y-6">
+                        <h3 className="text-lg font-bold dark:text-white">Preferencias</h3>
+                        
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-bold dark:text-white">Notificaciones</p>
+                                <p className="text-[10px] text-gray-500 uppercase font-black">Desktop alerts</p>
                             </div>
-                        </section>
+                            <button className="w-12 h-6 rounded-full bg-primary relative shadow-inner">
+                                <div className="absolute right-1 top-1 w-4 h-4 rounded-full bg-white"></div>
+                            </button>
+                        </div>
 
-                        {/* Section: Security */}
-                        <section id="security" className="p-8 border-b border-accent/10 scroll-mt-10 bg-background/5 dark:bg-background-dark/5">
-                            <h2 className="text-2xl font-bold text-accent dark:text-accent-dark mb-6 flex items-center gap-3">
-                                <div className="w-7 h-7">
-                                    <LogOutIcon />
-                                </div>
-                                Seguridad
-                            </h2>
-                            <div className="flex flex-col gap-6">
-                                <div className="p-4 bg-white/50 dark:bg-black/20 rounded-xl border border-accent/5">
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Administra tu contraseña y la seguridad de tu acceso.</p>
-                                    <button
-                                        onClick={() => alert("Función en desarrollo...")}
-                                        className="px-6 py-2.5 bg-primary text-white font-semibold rounded-xl cursor-pointer hover:bg-primary-dark transition-all shadow-md active:scale-95"
-                                    >
-                                        Cambiar Contraseña
-                                    </button>
-                                </div>
+                        <div className="flex items-center justify-between opacity-50">
+                            <div>
+                                <p className="text-sm font-bold dark:text-white">Modo Oscuro</p>
+                                <p className="text-[10px] text-gray-500 uppercase font-black">Theme auto</p>
                             </div>
-                        </section>
-
-                        {/* Section: Preferences & Data */}
-                        <section id="preferences" className="p-8 scroll-mt-10">
-                            <h2 className="text-2xl font-bold text-accent dark:text-accent-dark mb-6 flex items-center gap-3">
-                                <div className="w-7 h-7">
-                                    <NotificationsIcon />
-                                </div>
-                                Preferencias y Datos
-                            </h2>
-
-                            <div className="flex flex-col gap-8">
-                                <div className="flex items-center justify-between p-5 bg-background/20 dark:bg-background-dark/20 rounded-2xl border border-accent/5">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-8 h-8 p-1.5 bg-green-500/10 rounded-lg text-green-600">
-                                            <NotificationsIcon />
-                                        </div>
-                                        <div>
-                                            <p className="font-bold dark:text-white">Notificaciones por Email</p>
-                                            <p className="text-xs text-gray-500">Recibe recordatorios de tus tareas pendientes.</p>
-                                        </div>
-                                    </div>
-                                    <span className="bg-green-500/20 text-green-600 px-3 py-1 rounded-full text-xs font-bold uppercase">Activo</span>
-                                </div>
-
-                                {/* Danger Zone */}
-                                <div className="mt-4 p-8 bg-red-50 dark:bg-red-950/20 rounded-3xl border-2 border-dashed border-red-200 dark:border-red-900/30">
-                                    <h3 className="text-xl font-bold text-red-600 mb-2">Zona de Peligro</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 font-medium">
-                                        Al eliminar tu cuenta se borrarán permanentemente todas tus notas y configuraciones.
-                                        Esta acción no se puede revertir.
-                                    </p>
-                                    <button
-                                        onClick={handleDeleteAccount}
-                                        className="px-8 py-3 bg-red-600 text-white font-bold rounded-xl cursor-pointer hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/20 active:scale-95"
-                                    >
-                                        Eliminar mi cuenta definitivamente
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-
+                            <button className="w-12 h-6 rounded-full bg-gray-300 relative shadow-inner">
+                                <div className="absolute left-1 top-1 w-4 h-4 rounded-full bg-white"></div>
+                            </button>
+                        </div>
                     </div>
-                </main>
+                    
+                    <div className="mt-8">
+                        <span className="text-[0.55rem] font-black text-primary/40 uppercase tracking-[0.2em]">Ready to Sync</span>
+                    </div>
+                </section>
+
+                {/* Security Section */}
+                <section id="security" className="md:col-span-3 bg-white dark:bg-secondary-dark/20 rounded-2xl p-8 shadow-sm border border-primary/5">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                        <div className="max-w-md">
+                            <div className="flex items-center gap-3 mb-2 text-primary">
+                                <span className="material-symbols-outlined">security</span>
+                                <h3 className="text-lg font-bold dark:text-white">Seguridad</h3>
+                            </div>
+                            <p className="text-sm text-gray-400 leading-relaxed">
+                                Protege tu cuenta activando la verificación de dos pasos y actualizando tu contraseña periódicamente.
+                            </p>
+                        </div>
+                        <div className="flex-1 max-w-lg w-full">
+                            <button className="w-full md:w-auto px-8 py-3 bg-primary-dark text-white rounded-2xl font-bold transition-all cursor-pointer hover:bg-primary active:scale-95 text-sm">
+                                Cambiar Contraseña
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Danger Zone */}
+                <section className="md:col-span-3 bg-red-100/30 dark:bg-red-900/10 rounded-2xl p-8 border border-red-200 dark:border-red-900/30 group">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="flex items-center gap-6 text-center md:text-left">
+                            <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shadow-sm">
+                                <span className="material-symbols-outlined text-3xl">warning_amber</span>
+                            </div>
+                            <div className="max-w-sm">
+                                <h3 className="text-xl font-bold text-red-600">Danger Zone</h3>
+                                <p className="text-sm text-gray-500 mt-1">
+                                    Se borrará toda la información relacionada con tu agenda universitaria. Esta acción es irreversible.
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={handleDeleteAccount}
+                            className="px-8 py-4 border-2 border-red-500/30 text-red-600 font-bold cursor-pointer rounded-2xl hover:bg-red-600 hover:text-white transition-all shadow-sm active:scale-95">
+                            Eliminar Cuenta
+                        </button>
+                    </div>
+                </section>
             </div>
         </div>
     );
