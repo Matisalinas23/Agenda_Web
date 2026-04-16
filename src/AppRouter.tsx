@@ -7,6 +7,7 @@ import Register from './screens/register'
 import { PrivateRoute } from './components/layouts/PrivateRoutes'
 import AccountVerification from './screens/accountVerification'
 import Account from './screens/account'
+import ResetPassword from './screens/resetPassword'
 
 
 export default function AppRouter() {
@@ -16,6 +17,7 @@ export default function AppRouter() {
         {/* Generall App Layout */}
         <Route element={<MainLayout />}>
           <Route path='/' element={<Agenda />}/>
+          <Route path='/reset-password' element={<ResetPassword />}/>
         </Route>
 
         {/* Account Specific Layout */}
