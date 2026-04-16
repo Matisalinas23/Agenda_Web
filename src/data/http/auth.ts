@@ -1,4 +1,3 @@
-import axios from "axios"
 import type { IPayloadAuth } from "../../interfaces/auth.interface"
 import type { ILoginUser, IRegisterUser, IUser } from "../../interfaces/user.interface" 
 import api from "./axios"
