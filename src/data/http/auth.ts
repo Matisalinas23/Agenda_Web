@@ -1,3 +1,4 @@
+import axios from "axios"
 import type { IPayloadAuth } from "../../interfaces/auth.interface"
 import type { ILoginUser, IRegisterUser, IUser } from "../../interfaces/user.interface" 
 import api from "./axios"
@@ -59,3 +60,13 @@ export const getGoogleAuthUrlHttp = async (): Promise<{ url: string }> => {
         throw error;
     }
 }
+
+export const resetPasswordHttp = async (token: string, newPassword: string) => {
+    try {
+        const response = await api.post(`${authUrl}/reset-password`, { token, newPassword })
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
