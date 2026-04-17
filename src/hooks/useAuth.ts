@@ -10,6 +10,11 @@ export const useAuth = () => {
     const navigate = useNavigate()
 
     const registerUser = async (registerValues: IRegisterUser): Promise<IUser> => {
+        if (registerValues.password.length < 6) {
+            alert("La contraseña debe tener al menos 6 caracteres")
+            return
+        }
+
         const data = await registerHttp(registerValues)
         return data
     }
