@@ -33,23 +33,55 @@ export default function Register() {
   }
 
   return (
-    <div className="h-full flex bg-background dark:bg-background-dark items-center justify-center">
+    <div className="h-full flex flex-col bg-background dark:bg-background-dark items-center justify-center gap-12">
+
+      {/* Formulario de registro */}
       <form onSubmit={handleSubmit} className="px-12 py-12 w-120 bg-secondary dark:bg-secondary-dark rounded-3xl flex flex-col items-center justify-center gap-12">
-          <h2 className="text-accent dark:text-accent-dark font-bold text-3xl">Registrarse</h2>
-          <div className="w-full flex flex-col gap-4">
-            {inputNames.map(name => (
-              <input key={name}
-                type={name === "password" ? "password" : "text"}
-                name={name}
-                placeholder={name === "username" ? "Nombre de usuario" : name === "email" ? "Correo electrónico" : "Contraseña"}
-                className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1"
-                onChange={handleChange}
-                value={formValues[name as keyof IRegisterUser]}
-              />
-            ))}
-          </div>
-          <ButtonRegister type="submit" text="Crear Cuenta" />
-        </form>
+        <h2 className="text-accent dark:text-accent-dark font-bold text-3xl">Registrarse</h2>
+        <div className="w-full flex flex-col gap-4">
+          {inputNames.map(name => (
+            <input key={name}
+              type={name === "password" ? "password" : "text"}
+              name={name}
+              placeholder={name === "username" ? "Nombre de usuario" : name === "email" ? "Correo electrónico" : "Contraseña"}
+              className="text-accent dark:text-accent-dark font-normal border-b border-blue-900/50 text-lg px-1 py-1"
+              onChange={handleChange}
+              value={formValues[name as keyof IRegisterUser]}
+            />
+          ))}
+        </div>
+        <ButtonRegister type="submit" text="Crear Cuenta" />
+      </form>
+
+      {/* ¿Ya tienes una cuenta? */}
+      <div className="flex items-center justify-center gap-3">
+        <p>¿Ya tienes una cuenta?</p>
+        <button
+          onClick={() => navigate("/login")}
+          className="text-blue-700 cursor-pointer dark:text-accent-dark font-normal text-md hover:text-primary"
+        >
+          Iniciar Sesión
+        </button>
+      </div>
+
+      {/* Requerimientos y recomendaciones */}
+      <div className="bg-secondary px-8 py-6 rounded-2xl">
+        <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Requerimientos y recomendaciones</h4>
+        <ul className="space-y-3">
+          <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span className="material-symbols-outlined text-base text-[#1a73e8]">check_circle</span>
+            Se requiere al menos 6 caracteres
+          </li>
+          <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span className="material-symbols-outlined text-base text-[#1a73e8]">check_circle</span>
+            Intenta incluir mayúsculas y caracteres especiales
+          </li>
+          <li className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span className="material-symbols-outlined text-base text-[#1a73e8]">check_circle</span>
+            Evita patrones comunes
+          </li>
+        </ul>
+      </div>
     </div>
   )
 }
