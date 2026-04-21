@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
+import UserAvatar from "./UserAvatar";
 
 export default function SidebarAccount() {
     const navigate = useNavigate();
@@ -8,24 +9,6 @@ export default function SidebarAccount() {
 
     const handleGoBack = () => {
         navigate("/");
-    };
-
-    const renderAvatar = (size: string) => {
-        if (payload?.profileImage) {
-            return (
-                <img 
-                    src={payload.profileImage} 
-                    alt="User profile avatar" 
-                    className={`${size} rounded-full object-cover border-2 border-primary/20 shadow-inner`}
-                    referrerPolicy="no-referrer"
-                />
-            );
-        }
-        return (
-            <div className={`${size} rounded-full border-2 border-primary/20 bg-primary/10 flex items-center justify-center text-primary`}>
-                <span className="material-symbols-outlined !text-4xl text-primary/40">person</span>
-            </div>
-        );
     };
 
     if (!payload) return null;
@@ -45,9 +28,7 @@ export default function SidebarAccount() {
             </div>
 
             <div className="mb-8 flex items-center gap-3 px-2">
-                <div className="w-12 h-12 flex-shrink-0">
-                    {renderAvatar("w-12 h-12")}
-                </div>
+                <UserAvatar className="w-12 h-12" iconSize="!text-4xl" />
                 <div className="overflow-hidden">
                     <h3 className="font-bold text-gray-800 dark:text-white truncate">{payload.username}</h3>
                     <p className="text-[10px] font-bold text-primary uppercase tracking-wider">Premium Plan</p>

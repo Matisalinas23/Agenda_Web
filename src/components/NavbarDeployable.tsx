@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../hooks/useAuth"
 import "./css/NavbarDeployable.css"
-import { RegisterLoginUserIcon } from "./Icons/RegisterLoginUserIcon"
 import { DarkModeIcon } from "./Icons/DarkModeIcon"
 import { NotificationsIcon } from "./Icons/NotificationsIcon"
 import { LogOutIcon } from "./Icons/LogOutIcon"
@@ -9,6 +8,8 @@ import { toggleTheme } from "../utils/theme"
 import { NotificationsOffIcon } from "./Icons/NotificationsOffIcon"
 import AccountIcon from "./Icons/AccountIcon"
 import { ModalToggleNotifications } from "./modals/ToggleNotificationIcon"
+
+import UserAvatar from "./UserAvatar"
 
 export default function NavbarDeployable() {
     const { logoutUser } = useAuth()
@@ -29,7 +30,7 @@ export default function NavbarDeployable() {
                 className=" h-9 w-9 cursor-pointer"
                 onClick={() => setIsOpenDepoyable(!isOpenDepoyable)}
             >
-                <RegisterLoginUserIcon />
+                <UserAvatar className="h-9 w-9" />
             </button>
             <div className={`navbarSideSection ${isOpenDepoyable ? "open" : ""}`}>
                 <ul className="navbarDeployable">

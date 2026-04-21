@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
 import { useSessions } from "../hooks/useSessions";
+import UserAvatar from "../components/UserAvatar";
 
 // Helper para parsear la cadena User-Agent hacia un texto amigable y un icono
 const parseUserAgent = (ua: string | null) => {
@@ -67,25 +68,6 @@ export default function Account() {
         }
     };
 
-    // Helper to render the avatar safely
-    const renderAvatar = (size: string) => {
-        if (payload?.profileImage) {
-            return (
-                <img 
-                    src={payload.profileImage} 
-                    alt="User profile avatar" 
-                    className={`${size} rounded-full object-cover border-2 border-primary/20 shadow-inner`}
-                    referrerPolicy="no-referrer"
-                />
-            );
-        }
-        return (
-            <div className={`${size} rounded-full border-2 border-primary/20 bg-primary/10 flex items-center justify-center text-primary`}>
-                <span className="material-symbols-outlined !text-4xl text-primary/40">person</span>
-            </div>
-        );
-    };
-
     if (!payload) return null;
 
     return (
@@ -104,9 +86,7 @@ export default function Account() {
                     className="md:col-span-2 bg-white dark:bg-secondary-dark/20 rounded-2xl p-8 shadow-sm border border-primary/5">
                     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
                         <div className="relative group">
-                            <div className="w-32 h-32">
-                                {renderAvatar("w-32 h-32")}
-                            </div>
+                            <UserAvatar className="w-32 h-32" iconSize="!text-4xl" />
                             <div
                                 className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                                 <span className="text-white text-xs font-bold">Editar</span>
