@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
 import UserAvatar from "./UserAvatar";
+import { useScrollSpy } from "../hooks/useScrollSpy";
 
 export default function SidebarAccount() {
     const navigate = useNavigate();
@@ -11,7 +12,29 @@ export default function SidebarAccount() {
         navigate("/");
     };
 
+    const activeSection = useScrollSpy(["personal-info", "security", "preferences"], 80);
+
     if (!payload) return null;
+
+    const scrollToSection = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
+        e.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+            // El top del elemento menos la altura aproximada del navbar (64px) + margen
+            const targetPosition = element.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
+        }
+    };
+
+    const getLinkClass = (id: string) => {
+        const isActive = activeSection === id;
+        return isActive
+            ? "flex items-center w-full cursor-pointer gap-3 px-4 py-3 bg-primary text-white font-bold rounded-xl shadow-md transition-all scale-100 active:scale-95"
+            : "flex items-center w-full cursor-pointer gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all";
+    };
 
     return (
         <aside
@@ -35,22 +58,22 @@ export default function SidebarAccount() {
                 </div>
             </div>
 
-            <nav className="flex-grow space-y-2">
-                <a className="flex items-center gap-3 px-4 py-3 bg-primary text-white font-bold rounded-xl shadow-md transition-all scale-100 active:scale-95"
-                    href="#personal-info">
+            <nav className="flex-grow flex flex-col space-y-2">
+                <button className={getLinkClass("personal-info")}
+                    onClick={(e) => scrollToSection(e, "personal-info")}>
                     <span className="material-symbols-outlined">person</span>
                     <span>Perfil</span>
-                </a>
-                <a className="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                    href="#security">
-                    <span className="material-symbols-outlined">lock</span>
-                    <span>Seguridad</span>
-                </a>
-                <a className="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all"
-                    href="#preferences">
+                </button>
+                <button className={getLinkClass("preferences")}
+                    onClick={(e) => scrollToSection(e, "preferences")}>
                     <span className="material-symbols-outlined">settings</span>
                     <span>Preferencias</span>
-                </a>
+                </button>
+                <button className={getLinkClass("security")}
+                    onClick={(e) => scrollToSection(e, "security")}>
+                    <span className="material-symbols-outlined">lock</span>
+                    <span>Seguridad</span>
+                </button>
             </nav>
 
             <div className="mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">

@@ -18,7 +18,7 @@ export default function Account() {
     if (!payload) return null;
 
     return (
-        <div className="max-w-4xl mx-auto space-y-10">
+        <div className="max-w-4xl mx-auto space-y-8 pb-12 py-4">
             {/* Header */}
             <header className="flex flex-col">
                 <span className="text-[0.6rem] font-bold tracking-[0.2em] text-primary uppercase mb-1">AJUSTES DE CUENTA</span>
@@ -26,7 +26,7 @@ export default function Account() {
             </header>
 
             {/* Bento Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 {/* Profile Info Card */}
                 <ProfileInfoCard payload={payload} />
