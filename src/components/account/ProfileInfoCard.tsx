@@ -1,5 +1,5 @@
+import type { IPayloadAuth } from "../../interfaces/auth.interface";
 import UserAvatar from "../UserAvatar";
-import { IPayloadAuth } from "../../interfaces/auth.interface";
 
 interface ProfileInfoCardProps {
     payload: IPayloadAuth;
