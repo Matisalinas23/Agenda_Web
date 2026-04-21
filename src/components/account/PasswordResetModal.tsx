@@ -33,7 +33,7 @@ export default function PasswordResetModal({ payload, onClose }: PasswordResetMo
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur p-4">
             <div className="bg-white dark:bg-secondary-dark rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-primary/10 scale-100 animate-in fade-in zoom-in duration-200">
                 <div className="flex justify-center mb-4 text-primary">
                     <span className="material-symbols-outlined !text-5xl">lock_reset</span>

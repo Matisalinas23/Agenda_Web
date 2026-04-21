@@ -13,7 +13,7 @@ export const ModalToggleNotifications = ({
     setIsNotifications
 }: ModalToggleNotificationsProps) => {
     return (
-        <div className=" bg-secondary-dark max-w-100 h-fit rounded-2xl p-8 flex flex-col items-center justify-center gap-12">
+        <div className=" bg-secondary max-w-100 h-fit rounded-2xl p-8 flex flex-col items-center justify-center gap-12">
             <p className="text-xl text-center">
                 {isNotifications === "true"
                     ? "¿ Estas seguro que deseas desactivar las notificaciones ?"
