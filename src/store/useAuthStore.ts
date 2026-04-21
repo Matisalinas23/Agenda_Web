@@ -35,8 +35,18 @@ const useAuthStore = create<IUseAuthStore>((set) => {
         login: (newToken: string) => {
             set({ token: newToken, isToken: true })
         },
-        logout: () => {
-            set({ token: null, isToken: false, payload: null })
+        logout: async () => {
+            // Limpia el estado local primero para UI instantánea
+            set({ token: null, isToken: false, payload: null });
+            localStorage.removeItem("token");
+            
+            // Intenta revocar en el backend
+            try {
+                const { logoutHttp } = await import("../data/http/auth");
+                await logoutHttp();
+            } catch (error) {
+                console.error("Error revoking session on backend", error);
+            }
         },
         setPayload: (payload: IPayloadAuth) => {
             set({ payload })

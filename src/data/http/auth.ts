@@ -69,3 +69,41 @@ export const resetPasswordHttp = async (token: string, newPassword: string) => {
         throw error;
     }
 };
+
+export interface ISession {
+    id: string;
+    ipAddress: string | null;
+    userAgent: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export const getSessionsHttp = async (): Promise<ISession[]> => {
+    try {
+        const res = await api.get(`${authUrl}/sessions`);
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+export const revokeSessionHttp = async (sessionId: string) => {
+    try {
+        const res = await api.delete(`${authUrl}/sessions/${sessionId}`);
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+export const logoutHttp = async () => {
+    try {
+        const res = await api.post(`${authUrl}/logout`);
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
