@@ -107,3 +107,24 @@ export const logoutHttp = async () => {
         throw error;
     }
 };
+
+export const requestAccountDeletionHttp = async (password?: string) => {
+    try {
+        const res = await api.post(`${authUrl}/request-deletion`, { password });
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+export const reactivateAccountHttp = async (token: string) => {
+    try {
+        const res = await api.post(`${authUrl}/reactivate`, { token });
+        return res.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+

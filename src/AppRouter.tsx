@@ -8,7 +8,8 @@ import { PrivateRoute } from './components/layouts/PrivateRoutes'
 import AccountVerification from './screens/accountVerification'
 import Account from './screens/account'
 import ResetPassword from './screens/resetPassword'
-
+import RecoverAccount from './screens/recoverAccount'
+import DeleteAccount from './screens/deleteAccount'
 
 export default function AppRouter() {
   return (
@@ -18,6 +19,7 @@ export default function AppRouter() {
         <Route element={<MainLayout />}>
           <Route path='/' element={<Agenda />}/>
           <Route path='/reset-password' element={<ResetPassword />}/>
+          <Route path='/delete-account' element={<DeleteAccount />}/>
         </Route>
 
         {/* Account Specific Layout */}
@@ -28,6 +30,7 @@ export default function AppRouter() {
 
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
+      <Route path='/reactivate-account' element={<RecoverAccount />}/>
       <Route path='/register/verification' element={<AccountVerification />}/>
     </Routes>
   )

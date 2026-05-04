@@ -1,18 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../store/useAuthStore";
 
 export default function DangerZone() {
     const navigate = useNavigate();
-    const logoutUser = useAuthStore(state => state.logout);
 
     const handleDeleteAccount = () => {
-        const confirmed = window.confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
-        if (confirmed) {
-            alert("El usuario fue eliminado exitosamente.\n\nSerás redirigido al inicio de sesión ahora.");
-            localStorage.removeItem("token");
-            logoutUser();
-            navigate("/login");
-        }
+        navigate("/delete-account");
     };
 
     return (

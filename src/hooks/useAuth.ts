@@ -59,7 +59,7 @@ export const useAuth = () => {
         if (!token) return
 
         const decoded = jwtDecode<IPayloadAuth>(token)
-        return decoded.userId
+        return decoded.id
     }
 
     const loginWithGoogle = async () => {

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 import { useSessions } from "../hooks/useSessions";
-
-// Componentes Refactorizados
 import ProfileInfoCard from "../components/account/ProfileInfoCard";
 import PreferencesCard from "../components/account/PreferencesCard";
 import SecuritySection from "../components/account/SecuritySection";
@@ -27,7 +25,7 @@ export default function Account() {
 
             {/* Bento Layout */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
+
                 {/* Profile Info Card */}
                 <ProfileInfoCard payload={payload} />
 
@@ -38,9 +36,9 @@ export default function Account() {
                 <SecuritySection onOpenModal={() => setIsPasswordModalOpen(true)} />
 
                 {/* Active Devices Section */}
-                <ActiveDevicesSection 
-                    sessions={sessions} 
-                    isLoadingSessions={isLoadingSessions} 
+                <ActiveDevicesSection
+                    sessions={sessions}
+                    isLoadingSessions={isLoadingSessions}
                 />
 
                 {/* Danger Zone */}
@@ -49,7 +47,7 @@ export default function Account() {
 
             {/* Password Reset Modal */}
             {isPasswordModalOpen && (
-                <PasswordResetModal 
+                <PasswordResetModal
                     payload={payload}
                     onClose={() => setIsPasswordModalOpen(false)}
                 />
